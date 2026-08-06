@@ -48,7 +48,7 @@ export default function InquiryForm({ service }: { service: string }) {
   if (status === "done") {
     return (
       <div className="glass-panel rounded-[20px] p-8">
-        <h3 className="font-display text-xl font-bold text-white">
+        <h3 className="font-display text-xl font-semibold text-white">
           Got it. We&apos;ll be in touch.
         </h3>
         <p className="mt-2 text-sm text-steel">

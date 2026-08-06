@@ -24,10 +24,10 @@ export default function PricingCard({
           Most recommended
         </p>
       )}
-      <h3 className={`font-display text-lg font-bold ${isLight ? "text-ink-navy" : "text-white"}`}>
+      <h3 className={`font-display text-lg font-semibold ${isLight ? "text-ink-navy" : "text-white"}`}>
         {tier.name}
       </h3>
-      <p className={`font-display mt-3 text-3xl font-black ${isLight ? "text-ink-navy" : "text-white"}`}>
+      <p className={`font-display mt-3 text-3xl font-bold ${isLight ? "text-ink-navy" : "text-white"}`}>
         {tier.price}
       </p>
       {tier.priceNote && (

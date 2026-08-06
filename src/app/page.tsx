@@ -35,13 +35,12 @@ const TRUST_STATS = [
 export default function Home() {
   return (
     <div>
-      <section className="relative overflow-hidden">
-        <AuroraBlobs />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-20 pt-10 md:pb-28 md:pt-16">
+      <section>
+        <div className="mx-auto max-w-6xl px-6 pb-20 pt-10 md:pb-28 md:pt-16">
           <p className="font-display text-xs uppercase tracking-[0.2em] text-steel">
             Meta ads · Social growth · Creative · Web
           </p>
-          <h1 className="font-display mt-5 max-w-3xl text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
+          <h1 className="font-display mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
             Turning Complexity{" "}
             <span className="text-zafaye-orange">to Clarity</span>
           </h1>
@@ -75,7 +74,7 @@ export default function Home() {
           <p className="font-display text-xs uppercase tracking-[0.15em] text-ink-navy/50">
             How an engagement runs
           </p>
-          <h2 className="font-display mt-3 max-w-2xl text-2xl font-extrabold text-ink-navy md:text-3xl">
+          <h2 className="font-display mt-3 max-w-2xl text-2xl font-semibold text-ink-navy md:text-3xl">
             One funnel, four stages, no guesswork.
           </h2>
 
@@ -86,7 +85,7 @@ export default function Home() {
                 className="glass-panel-light glass-panel-light-hover rounded-[20px] p-6"
               >
                 <p className="font-display text-sm text-ink-navy/45">{item.step}</p>
-                <h3 className="font-display mt-2 text-xl font-bold text-ink-navy">
+                <h3 className="font-display mt-2 text-xl font-semibold text-ink-navy">
                   {item.title}
                 </h3>
                 <p className="mt-3 text-sm text-ink-navy/65">{item.body}</p>
@@ -102,7 +101,7 @@ export default function Home() {
           <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
             Trust signals
           </p>
-          <h2 className="font-display mt-3 max-w-2xl text-2xl font-extrabold text-white md:text-3xl">
+          <h2 className="font-display mt-3 max-w-2xl text-2xl font-semibold text-white md:text-3xl">
             Every number here is something you could check yourself.
           </h2>
 
@@ -112,7 +111,7 @@ export default function Home() {
                 key={stat.label}
                 className="glass-panel glass-panel-hover rounded-[20px] p-7"
               >
-                <p className="font-display text-4xl font-black tabular-nums text-white md:text-5xl">
+                <p className="font-display text-4xl font-bold tabular-nums text-white md:text-5xl">
                   <CountUp value={stat.value} />
                 </p>
                 <p className="mt-3 text-sm text-steel">{stat.label}</p>
@@ -122,7 +121,7 @@ export default function Home() {
 
           <div className="glass-panel glass-panel-hover mt-14 flex flex-col items-start justify-between gap-6 rounded-[24px] p-8 md:flex-row md:items-center">
             <div>
-              <h3 className="font-display text-xl font-bold text-white">
+              <h3 className="font-display text-xl font-semibold text-white">
                 See the full portfolio and terms before you talk to us.
               </h3>
               <p className="mt-2 max-w-lg text-sm text-steel">

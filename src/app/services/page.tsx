@@ -38,7 +38,7 @@ function SectionHeading({
         {kicker}
       </p>
       <h2
-        className={`font-display mt-3 text-2xl font-extrabold md:text-3xl ${
+        className={`font-display mt-3 text-2xl font-semibold md:text-3xl ${
           isLight ? "text-ink-navy" : "text-white"
         }`}
       >
@@ -57,18 +57,17 @@ export default function ServicesPage() {
   return (
     <div>
       {/* Intro + Meta Ads */}
-      <section className="relative overflow-hidden">
-        <AuroraBlobs />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-10 pt-10 md:pt-14">
+      <section>
+        <div className="mx-auto max-w-6xl px-6 pb-10 pt-10 md:pt-14">
           <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
             Services
           </p>
-          <h1 className="font-display mt-3 max-w-2xl text-3xl font-extrabold text-white md:text-5xl">
+          <h1 className="font-display mt-3 max-w-2xl text-3xl font-semibold text-white md:text-5xl">
             Meta ads is what we&apos;re known for. Here&apos;s everything we run.
           </h1>
         </div>
 
-        <div id="meta-ads" className="relative z-10 mx-auto max-w-6xl px-6 py-14">
+        <div id="meta-ads" className="mx-auto max-w-6xl px-6 py-14">
           <SectionHeading
             kicker="Flagship service"
             title="Meta Ads Management"
