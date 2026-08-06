@@ -66,14 +66,6 @@ body {
   box-shadow: 0 12px 50px rgba(10, 46, 155, 0.1), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
 }
 
-.glass-nav {
-  background: rgba(5, 11, 31, 0.55);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
-}
-
 .glass-input {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
@@ -112,12 +104,46 @@ body {
   z-index: 0;
 }
 
+.aurora-parallax-layer {
+  position: absolute;
+  inset: -10% 0;
+  will-change: transform;
+}
+
 .aurora-blob {
   position: absolute;
   border-radius: 9999px;
   filter: blur(90px);
   opacity: 0.35;
   will-change: transform;
+}
+
+.aurora-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.9) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 40%, black, transparent);
+}
+
+.aurora-wave {
+  position: absolute;
+  left: -10%;
+  top: 55%;
+  width: 120%;
+  height: auto;
+  opacity: 0.6;
+  animation: aurora-wave-drift 40s ease-in-out infinite;
+}
+
+@keyframes aurora-wave-drift {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-3%) translateY(2%);
+  }
 }
 
 .aurora-blob-blue {
@@ -150,7 +176,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .aurora-blob-blue,
-  .aurora-blob-royal {
+  .aurora-blob-royal,
+  .aurora-wave {
     animation: none;
   }
   .glass-panel-hover:hover,
