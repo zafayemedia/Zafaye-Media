@@ -2,8 +2,8 @@ import { Resend } from "resend";
 import { SITE } from "./constants";
 
 const apiKey = process.env.RESEND_API_KEY;
-const fromAddress = process.env.NOTIFY_FROM_EMAIL ?? "Zafaye Media Site <onboarding@resend.dev>";
-const toAddress = process.env.NOTIFY_TO_EMAIL ?? SITE.email;
+const fromAddress = process.env.NOTIFY_FROM_EMAIL || "Zafaye Media Site <onboarding@resend.dev>";
+const toAddress = process.env.NOTIFY_TO_EMAIL || SITE.email;
 
 export const isEmailConfigured = Boolean(apiKey);
 
