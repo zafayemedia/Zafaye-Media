@@ -3,7 +3,7 @@ import { NAV_LINKS, SITE, whatsappLink } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink-navy">
+    <footer className="border-t border-white/10 bg-ink-navy/80 backdrop-blur-xl">
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-sm">

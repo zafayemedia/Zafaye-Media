@@ -47,7 +47,7 @@ export default function InquiryForm({ service }: { service: string }) {
 
   if (status === "done") {
     return (
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+      <div className="glass-panel rounded-[20px] p-8">
         <h3 className="font-display text-xl font-bold text-white">
           Got it. We&apos;ll be in touch.
         </h3>
@@ -69,7 +69,7 @@ export default function InquiryForm({ service }: { service: string }) {
           id="business_name"
           name="business_name"
           required
-          className="mt-2 w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-steel/60 focus:border-zafaye-orange focus:outline-none"
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
           placeholder="Your business name"
         />
       </div>
@@ -82,7 +82,7 @@ export default function InquiryForm({ service }: { service: string }) {
           id="website_or_social"
           name="website_or_social"
           required
-          className="mt-2 w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-steel/60 focus:border-zafaye-orange focus:outline-none"
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
           placeholder="instagram.com/yourbusiness or your website"
         />
       </div>
@@ -94,7 +94,7 @@ export default function InquiryForm({ service }: { service: string }) {
         <input
           id="ad_spend"
           name="ad_spend"
-          className="mt-2 w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-steel/60 focus:border-zafaye-orange focus:outline-none"
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
           placeholder="e.g. PKR 50,000/month, or none yet"
         />
       </div>
@@ -107,7 +107,7 @@ export default function InquiryForm({ service }: { service: string }) {
           id="what_they_sell"
           name="what_they_sell"
           required
-          className="mt-2 w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-steel/60 focus:border-zafaye-orange focus:outline-none"
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
           placeholder="Product or service"
         />
       </div>
@@ -120,7 +120,7 @@ export default function InquiryForm({ service }: { service: string }) {
           id="notes"
           name="notes"
           rows={4}
-          className="mt-2 w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-steel/60 focus:border-zafaye-orange focus:outline-none"
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
           placeholder="Optional"
         />
       </div>

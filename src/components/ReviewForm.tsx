@@ -46,7 +46,7 @@ export default function ReviewForm() {
 
   if (status === "done") {
     return (
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+      <div className="glass-panel rounded-[20px] p-8">
         <h3 className="font-display text-xl font-bold text-white">
           Thanks for the review.
         </h3>
@@ -67,7 +67,7 @@ export default function ReviewForm() {
           id="name"
           name="name"
           required
-          className="mt-2 w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-steel/60 focus:border-zafaye-orange focus:outline-none"
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
           placeholder="Name"
         />
       </div>
@@ -83,10 +83,8 @@ export default function ReviewForm() {
               type="button"
               onClick={() => setRating(value)}
               aria-label={`${value} star${value > 1 ? "s" : ""}`}
-              className={`h-10 w-10 rounded-lg border text-sm font-display ${
-                value <= rating
-                  ? "border-zafaye-orange bg-zafaye-orange/10 text-zafaye-orange"
-                  : "border-white/15 text-steel"
+              className={`glass-input h-10 w-10 rounded-xl text-sm font-display transition-colors ${
+                value <= rating ? "border-zafaye-orange text-zafaye-orange" : "text-steel"
               }`}
             >
               {value}
@@ -104,7 +102,7 @@ export default function ReviewForm() {
           name="comment"
           required
           rows={4}
-          className="mt-2 w-full rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-steel/60 focus:border-zafaye-orange focus:outline-none"
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
           placeholder="How was your experience?"
         />
       </div>
