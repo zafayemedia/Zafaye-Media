@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-navy: #050b1f;
+  --color-signal-blue: #0a6cf1;
+  --color-deep-royal: #0a2e9b;
+  --color-zafaye-orange: #fa7317;
+  --color-steel: #94a3c4;
+  --color-mist: #e2e7f0;
+
+  --font-display: var(--font-archivo);
+  --font-body: var(--font-inter);
+}
+
+body {
+  background: var(--color-ink-navy);
+  color: #ffffff;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+
+.font-display {
+  font-family: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+::selection {
+  background: var(--color-zafaye-orange);
+  color: var(--color-ink-navy);
+}

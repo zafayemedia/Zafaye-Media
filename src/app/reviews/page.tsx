@@ -1,0 +1,80 @@
+import type { Metadata } from "next";
+import ReviewForm from "@/components/ReviewForm";
+import { isSupabaseConfigured, supabase, type Review } from "@/lib/supabase";
+
+export const metadata: Metadata = {
+  title: "Reviews — Zafaye Media",
+  description: "Reviews from Zafaye Media clients.",
+};
+
+async function getApprovedReviews(): Promise<Review[]> {
+  if (!isSupabaseConfigured || !supabase) return [];
+
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("id, created_at, name, rating, comment")
+    .eq("approved", true)
+    .order("created_at", { ascending: false });
+
+  if (error || !data) return [];
+  return data as Review[];
+}
+
+export default async function ReviewsPage() {
+  const reviews = await getApprovedReviews();
+
+  return (
+    <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+      <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
+        Reviews
+      </p>
+      <h1 className="font-display mt-3 max-w-2xl text-3xl font-extrabold text-white md:text-5xl">
+        What clients say, unedited.
+      </h1>
+
+      <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <div>
+          {reviews.length === 0 ? (
+            <p className="text-sm text-steel">
+              No reviews are published yet. Submitted reviews are checked
+              before they go live here.
+            </p>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2">
+              {reviews.map((review) => (
+                <div
+                  key={review.id}
+                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+                >
+                  <p className="font-display text-sm text-zafaye-orange">
+                    {"★".repeat(review.rating)}
+                    <span className="text-steel">
+                      {"★".repeat(5 - review.rating)}
+                    </span>
+                  </p>
+                  <p className="mt-3 text-sm text-white/85">{review.comment}</p>
+                  <p className="font-display mt-4 text-xs uppercase tracking-[0.1em] text-steel">
+                    {review.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <h2 className="font-display text-lg font-bold text-white">
+            Leave a review
+          </h2>
+          <p className="mt-2 text-sm text-steel">
+            Reviews are checked before they're published, so it won't appear
+            immediately.
+          </p>
+          <div className="mt-6">
+            <ReviewForm />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
