@@ -186,7 +186,7 @@ body {
 
 .headline {
   font-family: var(--font-archivo), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
+  font-weight: 900;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   line-height: 0.98;
@@ -247,6 +247,27 @@ body {
   transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.02);
 }
 
+/* Marquee */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .aurora-blob-blue,
   .aurora-blob-royal,
@@ -268,5 +289,8 @@ body {
   .tilt-card:active {
     transition: none;
     transform: none;
+  }
+  .marquee-track {
+    animation: none;
   }
 }

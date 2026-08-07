@@ -7,12 +7,25 @@ create table if not exists inquiries (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
   service text not null,
+  full_name text not null,
+  email text not null,
+  phone text not null,
+  city text,
+  country text,
   business_name text not null,
   website_or_social text not null,
   ad_spend text,
   what_they_sell text not null,
   notes text
 );
+
+-- Migration: run this instead if the `inquiries` table already exists
+-- (e.g. it was created before the contact-info fields were added).
+-- alter table inquiries add column if not exists full_name text;
+-- alter table inquiries add column if not exists email text;
+-- alter table inquiries add column if not exists phone text;
+-- alter table inquiries add column if not exists city text;
+-- alter table inquiries add column if not exists country text;
 
 alter table inquiries enable row level security;
 

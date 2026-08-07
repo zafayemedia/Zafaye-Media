@@ -16,6 +16,11 @@ export default function InquiryForm({ service }: { service: string }) {
 
     const payload = {
       service,
+      full_name: String(data.get("full_name") || ""),
+      email: String(data.get("email") || ""),
+      phone: String(data.get("phone") || ""),
+      city: String(data.get("city") || ""),
+      country: String(data.get("country") || ""),
       business_name: String(data.get("business_name") || ""),
       website_or_social: String(data.get("website_or_social") || ""),
       ad_spend: String(data.get("ad_spend") || ""),
@@ -61,6 +66,75 @@ export default function InquiryForm({ service }: { service: string }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label htmlFor="full_name" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
+            Full name
+          </label>
+          <input
+            id="full_name"
+            name="full_name"
+            required
+            className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
+            Email address
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
+            placeholder="you@business.com"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="phone" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
+          Phone number <span className="normal-case text-steel/70">(WhatsApp is fine)</span>
+        </label>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          required
+          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
+          placeholder="+92 300 1234567"
+        />
+      </div>
+
+      <div className="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label htmlFor="city" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
+            Location / city
+          </label>
+          <input
+            id="city"
+            name="city"
+            className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
+            placeholder="e.g. Lahore"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="country" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
+            Country
+          </label>
+          <input
+            id="country"
+            name="country"
+            className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
+            placeholder="e.g. Pakistan"
+          />
+        </div>
+      </div>
+
       <div>
         <label htmlFor="business_name" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
           Business name

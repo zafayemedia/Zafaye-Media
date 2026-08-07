@@ -13,6 +13,11 @@ export type Inquiry = {
   id?: string;
   created_at?: string;
   service: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  city: string | null;
+  country: string | null;
   business_name: string;
   website_or_social: string;
   ad_spend: string | null;

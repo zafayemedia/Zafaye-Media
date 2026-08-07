@@ -5,7 +5,15 @@ import { sendNotificationEmail } from "@/lib/email";
 export async function POST(request: Request) {
   const body = (await request.json()) as Partial<Inquiry>;
 
-  if (!body.service || !body.business_name || !body.website_or_social || !body.what_they_sell) {
+  if (
+    !body.service ||
+    !body.full_name ||
+    !body.email ||
+    !body.phone ||
+    !body.business_name ||
+    !body.website_or_social ||
+    !body.what_they_sell
+  ) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
 
@@ -18,6 +26,11 @@ export async function POST(request: Request) {
 
   const inquiry: Inquiry = {
     service: body.service,
+    full_name: body.full_name,
+    email: body.email,
+    phone: body.phone,
+    city: body.city ?? null,
+    country: body.country ?? null,
     business_name: body.business_name,
     website_or_social: body.website_or_social,
     ad_spend: body.ad_spend ?? null,
@@ -35,6 +48,10 @@ export async function POST(request: Request) {
     `New inquiry: ${inquiry.service}`,
     `
       <h2>New inquiry — ${inquiry.service}</h2>
+      <p><strong>Name:</strong> ${inquiry.full_name}</p>
+      <p><strong>Email:</strong> ${inquiry.email}</p>
+      <p><strong>Phone / WhatsApp:</strong> ${inquiry.phone}</p>
+      <p><strong>Location:</strong> ${[inquiry.city, inquiry.country].filter(Boolean).join(", ") || "Not provided"}</p>
       <p><strong>Business:</strong> ${inquiry.business_name}</p>
       <p><strong>Website / social:</strong> ${inquiry.website_or_social}</p>
       <p><strong>Current ad spend:</strong> ${inquiry.ad_spend || "Not provided"}</p>
