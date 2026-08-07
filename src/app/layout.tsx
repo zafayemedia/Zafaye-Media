@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   title: `${SITE.name} — ${SITE.tagline}`,
   description:
     "Zafaye Media is a performance marketing agency running Meta ad campaigns, social media growth, and creative production for businesses in Pakistan and the US.",
+  icons: {
+    icon: "/logo-primary-transparent.png",
+    shortcut: "/logo-primary-transparent.png",
+    apple: "/logo-primary.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
