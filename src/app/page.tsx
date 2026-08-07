@@ -140,6 +140,17 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={280}>
+            <div className="mt-10">
+              <Link
+                href="/services"
+                className="font-display inline-block rounded-full bg-zafaye-orange px-7 py-3.5 text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
+              >
+                View all services in detail
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
