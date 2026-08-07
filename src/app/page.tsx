@@ -40,7 +40,7 @@ export default function Home() {
               Turning Complexity <span className="text-zafaye-orange">to Clarity</span>
             </h1>
             <p className="mt-6 max-w-md text-base text-steel md:text-lg">
-              Meta ads run by the numbers, not the hype.
+              Your digital growth partner for ads, creative, and social growth.
             </p>
             <div className="mt-9">
               <Link

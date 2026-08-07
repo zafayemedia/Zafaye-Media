@@ -64,7 +64,7 @@ export default function ServicesPage() {
             <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">Services</p>
             <h1 className="headline mt-3 text-4xl text-white md:text-6xl">What we run</h1>
             <p className="mt-4 max-w-md text-sm text-steel md:text-base">
-              Meta ads first. Everything else supports it.
+              Everything a digital growth partner runs — ads, creative, social, and more.
             </p>
           </Reveal>
         </div>
@@ -81,7 +81,7 @@ export default function ServicesPage() {
             <SectionHeading
               kicker="Flagship service"
               title="Meta Ads Management"
-              body="Campaign setup, creative, and ongoing optimization. Ad spend is separate, paid direct to Meta."
+              body="Full campaign setup, creative, and ongoing optimization on Meta. Ad spend is billed separately by Meta, direct from your ad account."
             />
           </Reveal>
 
@@ -94,12 +94,11 @@ export default function ServicesPage() {
           </div>
 
           <Reveal delay={200}>
-            <details className="glass-details glass-panel mt-10 rounded-[20px] p-7">
-              <summary className="font-display flex items-center justify-between text-xs uppercase tracking-[0.15em] text-steel">
-                What&apos;s included from Essential up
-                <span className="accordion-icon font-display text-lg text-white">+</span>
-              </summary>
-              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+            <div className="glass-panel mt-10 rounded-[20px] p-7">
+              <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
+                Included from Essential up
+              </p>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                 {META_ADS_INCLUDED.map((item) => (
                   <li key={item} className="flex gap-3 text-sm text-white/85">
                     <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-steel" />
@@ -107,7 +106,7 @@ export default function ServicesPage() {
                   </li>
                 ))}
               </ul>
-            </details>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -120,7 +119,7 @@ export default function ServicesPage() {
               tone="light"
               kicker="Secondary service"
               title="Social Growth"
-              body="Presence, growth, authority — run across your channels."
+              body="Ongoing management and growth of your social channels, structured across three phases: presence, growth, and authority."
             />
           </Reveal>
 
@@ -145,7 +144,7 @@ export default function ServicesPage() {
             <SectionHeading
               kicker="Secondary service"
               title="Branding"
-              body="A focused identity package, not a six-week engagement."
+              body="A focused identity package: enough to launch or refresh a brand without a six-week engagement."
             />
           </Reveal>
 
@@ -165,7 +164,7 @@ export default function ServicesPage() {
               tone="light"
               kicker="Secondary service"
               title="Website & Shopify"
-              body="Scoped and priced around what you actually need."
+              body="No fixed packages here. Every build is scoped and priced around what you actually need, from a simple brochure site to a full Shopify store."
             />
 
             <Link
