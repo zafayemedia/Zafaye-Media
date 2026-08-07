@@ -5,16 +5,32 @@ import CountUp from "@/components/CountUp";
 import Reveal from "@/components/Reveal";
 
 const FUNNEL = [
-  { step: "01", title: "Reach", body: "Targeted from day one." },
-  { step: "02", title: "Creative", body: "Built to stop the scroll." },
-  { step: "03", title: "Convert", body: "Audited, tested, tightened." },
-  { step: "04", title: "Scale", body: "More of what already works." },
+  {
+    step: "01",
+    title: "Reach",
+    body: "Meta ad campaigns built around your actual customer, not a broad guess. Pixel and audience setup done properly before a single rupee of spend goes out.",
+  },
+  {
+    step: "02",
+    title: "Creative",
+    body: "Ad creatives, product imagery, and copy built to stop the scroll and make the offer clear in the first three seconds.",
+  },
+  {
+    step: "03",
+    title: "Convert",
+    body: "Landing page and destination audits, retargeting, and A/B testing so traffic you're already paying for actually turns into leads and sales.",
+  },
+  {
+    step: "04",
+    title: "Scale",
+    body: "Once a campaign works, we scale it deliberately: more budget, more creative variants, tighter reporting, without breaking what's already working.",
+  },
 ];
 
 const TRUST_STATS = [
   { value: "8.4x", label: "Average ROAS — MyLight.pk" },
   { value: "7x", label: "ROAS — Thaheem Farms" },
-  { value: "6", label: "Real case studies, public" },
+  { value: "13", label: "Real case studies, public" },
 ];
 
 export default function Home() {

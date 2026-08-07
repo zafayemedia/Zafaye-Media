@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SocialLinks from "@/components/SocialLinks";
 import { NAV_LINKS, SITE, whatsappLink } from "@/lib/constants";
 
 export default function Footer() {
@@ -17,6 +18,7 @@ export default function Footer() {
               ZAFAYE MEDIA
             </p>
             <p className="mt-3 text-sm text-steel">{SITE.tagline}</p>
+            <SocialLinks className="mt-5" />
           </div>
 
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">

@@ -19,3 +19,9 @@ export const NAV_LINKS = [
   { href: "/reviews", label: "Reviews" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+export const SOCIAL_LINKS = [
+  { href: "https://www.instagram.com/zafaye.media/", label: "Instagram" },
+  { href: "https://www.facebook.com/zafaye.media", label: "Facebook" },
+  { href: "https://www.linkedin.com/company/zafayemedia", label: "LinkedIn" },
+] as const;
