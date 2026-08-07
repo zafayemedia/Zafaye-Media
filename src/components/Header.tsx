@@ -1,16 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  function handleLogoClick(event: MouseEvent) {
+    if (pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-4 md:top-6">
       <div className="glass-nav mx-auto flex max-w-4xl items-center justify-between rounded-full px-5 py-3 md:px-7 md:py-3.5">
-        <Link href="/" className="font-display text-sm tracking-[0.15em] text-white md:text-base">
+        <Link
+          href="/"
+          onClick={handleLogoClick}
+          className="font-display text-sm tracking-[0.15em] text-white md:text-base"
+        >
           ZAFAYE MEDIA
         </Link>
 
