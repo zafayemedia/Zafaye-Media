@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InquiryForm from "@/components/InquiryForm";
+import Reveal from "@/components/Reveal";
 import { SITE, whatsappLink } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -9,17 +10,15 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-      <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
-        Contact
-      </p>
-      <h1 className="font-display mt-3 max-w-2xl text-3xl font-semibold text-white md:text-5xl">
-        Talk to us directly, or send the details below.
-      </h1>
+    <div className="mx-auto max-w-6xl px-6 pb-16 pt-32 md:pb-24 md:pt-40">
+      <Reveal>
+        <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">Contact</p>
+        <h1 className="headline mt-3 text-4xl text-white md:text-6xl">Talk to us</h1>
+      </Reveal>
 
       <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
-        <div>
-          <div className="glass-panel glass-panel-hover rounded-[20px] p-7">
+        <Reveal delay={80}>
+          <div className="glass-panel tilt-card rounded-[20px] p-7">
             <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
               Email
             </p>
@@ -49,11 +48,11 @@ export default function ContactPage() {
               {SITE.legalName}, {SITE.legalAddress}
             </p>
           </div>
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={140}>
           <InquiryForm service="General inquiry from Contact" />
-        </div>
+        </Reveal>
       </div>
     </div>
   );

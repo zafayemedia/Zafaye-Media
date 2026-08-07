@@ -4,7 +4,6 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import AuroraBlobs from "@/components/AuroraBlobs";
 import { SITE } from "@/lib/constants";
 
 const archivo = Archivo({
@@ -32,13 +31,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${archivo.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-ink-navy text-white">
-        <div className="relative flex-1">
-          <AuroraBlobs />
-          <div className="relative z-10">
-            <Header />
-            <main>{children}</main>
-          </div>
-        </div>
+        <Header />
+        <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
       </body>

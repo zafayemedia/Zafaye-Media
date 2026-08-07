@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InquiryForm from "@/components/InquiryForm";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Inquire — Zafaye Media",
@@ -14,21 +15,18 @@ export default async function InquirePage({
   const service = params.service || "General inquiry";
 
   return (
-    <div className="mx-auto max-w-xl px-6 py-16 md:py-24">
-      <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
-        {service}
-      </p>
-      <h1 className="font-display mt-3 text-3xl font-semibold text-white md:text-4xl">
-        Tell us about your business.
-      </h1>
-      <p className="mt-4 text-sm text-steel">
-        This isn&apos;t a payment form. We&apos;ll review what you send and
-        get back to you to talk through fit and next steps.
-      </p>
+    <div className="mx-auto max-w-xl px-6 pb-16 pt-32 md:pb-24 md:pt-40">
+      <Reveal>
+        <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
+          {service}
+        </p>
+        <h1 className="headline mt-3 text-3xl text-white md:text-5xl">Tell us about your business</h1>
+        <p className="mt-4 text-sm text-steel">Not a payment form — we'll get back to you.</p>
 
-      <div className="mt-10">
-        <InquiryForm service={service} />
-      </div>
+        <div className="mt-10">
+          <InquiryForm service={service} />
+        </div>
+      </Reveal>
     </div>
   );
 }

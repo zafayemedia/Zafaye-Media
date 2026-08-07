@@ -1,10 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS, SITE, whatsappLink } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink-navy/80 backdrop-blur-xl">
-      <div className="mx-auto max-w-6xl px-6 py-12">
+    <footer className="relative overflow-hidden border-t border-white/10">
+      <div className="absolute inset-0 z-0">
+        <Image src="/images/footer-cta-banner.jpeg" alt="" fill sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-ink-navy/85" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-sm">
             <p className="font-display text-lg tracking-[0.15em] text-white">

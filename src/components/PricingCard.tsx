@@ -15,8 +15,8 @@ export default function PricingCard({
 
   return (
     <div
-      className={`flex flex-col rounded-[20px] p-7 ${
-        isLight ? "glass-panel-light glass-panel-light-hover" : "glass-panel glass-panel-hover"
+      className={`tilt-card flex h-full flex-col rounded-[20px] p-7 ${
+        isLight ? "glass-panel-light" : "glass-panel"
       } ${tier.highlight ? "ring-1 ring-zafaye-orange" : ""}`}
     >
       {tier.highlight && (
