@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CASE_STUDIES } from "@/lib/portfolio-data";
 import { inquireHref } from "@/lib/inquire";
+import { PORTFOLIO_DRIVE_LINK } from "@/lib/constants";
 import CountUp from "@/components/CountUp";
 import Reveal from "@/components/Reveal";
 
@@ -27,6 +28,16 @@ export default function PortfolioPage() {
             <p className="mt-4 max-w-md text-sm text-steel md:text-base">
               No cherry-picked results. What&apos;s here is what happened.
             </p>
+            <div className="mt-8">
+              <a
+                href={PORTFOLIO_DRIVE_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="glass-panel glass-panel-hover font-display inline-block rounded-full px-7 py-3.5 text-sm uppercase tracking-[0.1em] text-white"
+              >
+                View photos &amp; videos
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>

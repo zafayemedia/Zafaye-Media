@@ -1,6 +1,6 @@
-import { CASE_STUDIES } from "@/lib/portfolio-data";
+import { CASE_STUDIES, MARQUEE_ONLY_NAMES } from "@/lib/portfolio-data";
 
-const NAMES = CASE_STUDIES.map((c) => c.client);
+const NAMES = [...CASE_STUDIES.map((c) => c.client), ...MARQUEE_ONLY_NAMES];
 const LOOP = [...NAMES, ...NAMES];
 
 export default function ClientMarquee() {

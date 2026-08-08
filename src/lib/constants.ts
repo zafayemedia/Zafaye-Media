@@ -20,6 +20,9 @@ export const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+export const PORTFOLIO_DRIVE_LINK =
+  "https://drive.google.com/drive/folders/1g2WE2J9VWGClVj6OUCNfXuw8iM-bBFEQ?usp=sharing";
+
 export const SOCIAL_LINKS = [
   { href: "https://www.instagram.com/zafaye.media/", label: "Instagram" },
   { href: "https://www.facebook.com/zafaye.media", label: "Facebook" },

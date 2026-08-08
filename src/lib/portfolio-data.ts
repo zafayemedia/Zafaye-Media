@@ -25,6 +25,14 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Export-quality mango sales for a Multan orchard selling domestically and internationally: 7x return on ad spend, cost per result at 10% of product price, 14 orders a day.",
   },
   {
+    client: "Nakhlistan PK",
+    category: "Organic products — flagship: choco-filled almond dates",
+    stat: "0 → 4-5/day",
+    statLabel: "Daily orders, minimal ad budget",
+    summary:
+      "Full social and digital presence managed end to end, plus a Meta ads campaign that scaled from zero orders a day to a consistent 4 to 5 orders a day, on a minimal budget.",
+  },
+  {
     client: "Vero Eyewear",
     category: "Sunglasses brand",
     stat: "0 → 3-4/day",
@@ -113,3 +121,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Meta ads campaign structured and launched, generating results for the brand.",
   },
 ];
+
+// Client names shown in the homepage marquee only — not yet written up as
+// full Portfolio page case studies.
+export const MARQUEE_ONLY_NAMES = ["Peak Prep Academy"];
