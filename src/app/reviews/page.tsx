@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description: "Reviews from Zafaye Media clients.",
 };
 
+// Without this, Next.js prerenders this page once at build time and it
+// never picks up newly approved reviews until the next deploy.
+export const revalidate = 30;
+
 async function getApprovedReviews(): Promise<Review[]> {
   if (!isSupabaseConfigured || !supabase) return [];
 

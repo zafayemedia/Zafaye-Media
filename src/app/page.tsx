@@ -5,6 +5,10 @@ import FeaturedReviews from "@/components/FeaturedReviews";
 import Reveal from "@/components/Reveal";
 import { inquireHref } from "@/lib/inquire";
 
+// Without this, Next.js prerenders the homepage once at build time and the
+// featured-reviews section never picks up newly approved reviews.
+export const revalidate = 30;
+
 const WHAT_WE_DO = [
   { title: "Meta Ads", body: "Structured campaigns, run for results." },
   { title: "Social Growth", body: "Presence that earns trust." },
