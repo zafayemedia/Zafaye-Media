@@ -93,6 +93,30 @@ export const META_ADS_TIERS: Tier[] = [
   },
 ];
 
+export const LEADBRIDGE = {
+  kicker: "Meta Ads Add-on",
+  name: "LeadBridge",
+  price: "PKR 15,000",
+  priceNote: "per month, flat retainer",
+  tagline: "We don't just get you leads, we make sure none of them go cold.",
+  stages: [
+    {
+      label: "Cold",
+      body: "First contact within a set response window, via WhatsApp, call or DM, qualifying each lead before it's marked viable.",
+    },
+    {
+      label: "Warm",
+      body: "Structured follow-up sequences and objection handling, built around your specific offer, for leads who engaged but haven't booked.",
+    },
+    {
+      label: "Booked",
+      body: "Appointment and booking coordination: scheduling, confirmation and reminders, so booked slots actually show up.",
+    },
+  ],
+  closingNote:
+    "Includes a weekly lead status report (cold / warm / booked / lost) and a monthly summary covering response time, cold-to-booked conversion rate, and recommendations to improve lead quality upstream.",
+};
+
 export const META_ADS_INCLUDED = [
   "Business Portfolio setup guidance",
   "Ad account setup and optimization, using your existing account or setting one up for you",
