@@ -1,9 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CircleCheck, Rocket, ChartColumn, FileText } from "lucide-react";
 import ClientMarquee from "@/components/ClientMarquee";
 import FeaturedReviews from "@/components/FeaturedReviews";
 import Reveal from "@/components/Reveal";
 import { inquireHref } from "@/lib/inquire";
+
+const TRIAL_BENEFITS = [
+  {
+    icon: Rocket,
+    label: "Live in days",
+    body: "Campaign built and launched fast",
+  },
+  {
+    icon: ChartColumn,
+    label: "Real performance data",
+    body: "See exactly what's working, weekly",
+  },
+  {
+    icon: FileText,
+    label: "Clear report included",
+    body: "Plain-language results, no jargon",
+  },
+];
+
+const TRIAL_INCLUSIONS = [
+  "1 campaign",
+  "Up to 4 creatives",
+  "Full pixel & account setup",
+  "PKR 10,000 + 10% of ad spend",
+];
 
 // Without this, Next.js prerenders the homepage once at build time and the
 // featured-reviews section never picks up newly approved reviews.
@@ -74,42 +100,46 @@ export default function Home() {
               Start here
             </p>
             <h2 className="headline mt-3 text-3xl text-ink-navy md:text-5xl">
-              Prove It Works, Risk-Free
+              Trial Offer: Prove It Works, Risk-Free
             </h2>
             <p className="mt-4 max-w-xl text-sm text-ink-navy/65 md:text-base">
-              One live campaign, real data, no long-term commitment. See exactly
-              what working with us looks like before you scale up.
+              One live campaign built for first-time advertisers, or anyone
+              who&apos;s been let down by an agency before.
             </p>
+          </Reveal>
 
-            <div className="mt-10 grid gap-8 md:grid-cols-2">
-              <div>
-                <p className="font-display text-xs uppercase tracking-[0.1em] text-ink-navy/50">
-                  Who it&apos;s for
-                </p>
-                <p className="mt-3 text-xl font-semibold leading-snug text-ink-navy md:text-2xl">
-                  Built for business owners testing Meta ads for the first time,
-                  or anyone who&apos;s been burned by an agency before and wants
-                  proof, not promises.
-                </p>
-              </div>
-              <div>
-                <p className="font-display text-xs uppercase tracking-[0.1em] text-ink-navy/50">
-                  What you actually get
-                </p>
-                <p className="mt-3 text-xl font-semibold leading-snug text-ink-navy md:text-2xl">
-                  A fully managed campaign, optimized in real time, with a clear
-                  report showing what worked and what didn&apos;t. You walk away
-                  with either results or clarity, never a bill and a shrug.
-                </p>
-              </div>
-            </div>
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {TRIAL_BENEFITS.map((benefit, i) => (
+              <Reveal key={benefit.label} delay={i * 70}>
+                <div className="glass-panel-light tilt-card flex h-full flex-col gap-3 rounded-[20px] p-6">
+                  <benefit.icon className="h-7 w-7 text-ink-navy" strokeWidth={1.75} />
+                  <p className="font-display text-base font-semibold text-ink-navy">
+                    {benefit.label}
+                  </p>
+                  <p className="text-sm text-ink-navy/60">{benefit.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
 
-            <div className="mt-10 flex flex-col gap-6 border-t border-ink-navy/10 pt-6 md:flex-row md:items-center md:justify-between">
-              <p className="max-w-lg text-xs text-ink-navy/50">
-                Included: 1 campaign, up to 4 ad creatives, full pixel and
-                account setup. PKR 10,000 plus 10% of ad spend, first month
-                only.
-              </p>
+          <Reveal delay={220}>
+            <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="glass-panel-light inline-flex w-fit items-center gap-2 rounded-full px-5 py-3 text-xs text-ink-navy/70">
+                <CircleCheck className="h-4 w-4 shrink-0 text-ink-navy/50" strokeWidth={2} />
+                <span className="flex flex-wrap items-center gap-x-2">
+                  {TRIAL_INCLUSIONS.map((item, i) => (
+                    <span key={item} className="flex items-center gap-2">
+                      {item}
+                      {i < TRIAL_INCLUSIONS.length - 1 && (
+                        <span aria-hidden="true" className="text-ink-navy/30">
+                          ·
+                        </span>
+                      )}
+                    </span>
+                  ))}
+                </span>
+              </div>
+
               <Link
                 href={inquireHref("Meta Ads — Trial")}
                 className="font-display shrink-0 rounded-full bg-zafaye-orange px-7 py-3.5 text-center text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
