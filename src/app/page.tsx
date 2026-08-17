@@ -74,37 +74,42 @@ export default function Home() {
               Start here
             </p>
             <h2 className="headline mt-3 text-3xl text-ink-navy md:text-5xl">
-              The Low-Risk Way In
+              Prove It Works, Risk-Free
             </h2>
-            <p className="mt-4 max-w-md text-sm text-ink-navy/65 md:text-base">
-              A properly structured first month on Meta ads. Not a demo.
+            <p className="mt-4 max-w-xl text-sm text-ink-navy/65 md:text-base">
+              One live campaign, real data, no long-term commitment. See exactly
+              what working with us looks like before you scale up.
             </p>
 
-            <div className="glass-panel-light tilt-card mt-10 flex flex-col gap-8 rounded-[24px] p-8 md:flex-row md:items-center md:justify-between">
-              <div className="flex flex-wrap gap-8">
-                <div>
-                  <p className="font-display text-2xl font-bold text-ink-navy">PKR 10,000</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-navy/50">
-                    + 10% of ad spend
-                  </p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-ink-navy">1</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-navy/50">Campaign</p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-ink-navy">4</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-navy/50">
-                    Ad creatives
-                  </p>
-                </div>
-                <div>
-                  <p className="font-display text-2xl font-bold text-ink-navy">1 mo</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-navy/50">
-                    First month only
-                  </p>
-                </div>
+            <div className="mt-10 grid gap-8 md:grid-cols-2">
+              <div>
+                <p className="font-display text-xs uppercase tracking-[0.1em] text-ink-navy/50">
+                  Who it&apos;s for
+                </p>
+                <p className="mt-3 text-xl font-semibold leading-snug text-ink-navy md:text-2xl">
+                  Built for business owners testing Meta ads for the first time,
+                  or anyone who&apos;s been burned by an agency before and wants
+                  proof, not promises.
+                </p>
               </div>
+              <div>
+                <p className="font-display text-xs uppercase tracking-[0.1em] text-ink-navy/50">
+                  What you actually get
+                </p>
+                <p className="mt-3 text-xl font-semibold leading-snug text-ink-navy md:text-2xl">
+                  A fully managed campaign, optimized in real time, with a clear
+                  report showing what worked and what didn&apos;t. You walk away
+                  with either results or clarity, never a bill and a shrug.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-6 border-t border-ink-navy/10 pt-6 md:flex-row md:items-center md:justify-between">
+              <p className="max-w-lg text-xs text-ink-navy/50">
+                Included: 1 campaign, up to 4 ad creatives, full pixel and
+                account setup. PKR 10,000 plus 10% of ad spend, first month
+                only.
+              </p>
               <Link
                 href={inquireHref("Meta Ads — Trial")}
                 className="font-display shrink-0 rounded-full bg-zafaye-orange px-7 py-3.5 text-center text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
