@@ -57,6 +57,14 @@ export default function WorkPage() {
                 </b>
                 <span>{featured.statLabel}</span>
               </div>
+              {featured.featuredStat2 && (
+                <div className="zm-metric">
+                  <b>
+                    <CountUpResult value={featured.featuredStat2} />
+                  </b>
+                  <span>{featured.featuredStatLabel2}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

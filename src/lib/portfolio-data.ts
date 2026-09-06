@@ -4,6 +4,11 @@ export type CaseStudy = {
   stat: string;
   statLabel: string;
   summary: string;
+  // Only used on the /work "featured" block, which has room for more than
+  // one metric. Optional — most case studies only have the one verified
+  // figure above.
+  featuredStat2?: string;
+  featuredStatLabel2?: string;
 };
 
 // Ordered strongest results and broadest scope first, down to the least specific.
@@ -15,6 +20,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     statLabel: "Average ROAS",
     summary:
       "Scaled from 1-2 orders a day to 15-20 orders a day on Meta ads, at an average return on ad spend of 8.4x.",
+    featuredStat2: "PKR 300-400",
+    featuredStatLabel2: "Cost per result",
   },
   {
     client: "Thaheem Farms",

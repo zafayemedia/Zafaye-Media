@@ -166,11 +166,22 @@ function RadioGroup({
 }) {
   const error = errors[name];
   return (
-    <fieldset className="zm-field" style={{ border: 0, padding: "22px 0" }}>
-      <legend style={{ color: "var(--zm-muted)", fontSize: "0.9rem", textTransform: "lowercase" }}>
+    <fieldset
+      className="zm-field"
+      style={{ gridTemplateColumns: "1fr", border: 0, borderTop: "1px solid var(--zm-line-soft)", padding: "22px 0" }}
+    >
+      <legend
+        style={{
+          gridColumn: "1 / -1",
+          color: "var(--zm-muted)",
+          fontSize: "0.9rem",
+          textTransform: "lowercase",
+          marginBottom: "8px",
+        }}
+      >
         {legend}
       </legend>
-      <div style={{ display: "grid", gap: "10px", marginTop: "8px" }}>
+      <div style={{ display: "grid", gap: "10px" }}>
         {options.map((option) => (
           <label
             key={option}

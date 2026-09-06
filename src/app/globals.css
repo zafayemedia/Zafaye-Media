@@ -323,6 +323,37 @@ a.zm-focus,
   margin: 0;
 }
 
+/* generic two-column intro, reused across services/clipping/clippers/reviews
+   (same pattern as .zm-intro-grid/.zm-intro-cols above, under the reference
+   site's own class names) */
+.zm-two {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.zm-stack {
+  display: grid;
+  gap: 38px;
+}
+.zm-stack > div {
+  padding-top: 22px;
+  border-top: 1px solid var(--zm-line-soft);
+}
+.zm-stack h3 {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 400;
+  font-size: 1.02rem;
+  text-transform: lowercase;
+  margin: 0 0 10px;
+  color: var(--zm-text);
+}
+.zm-stack p {
+  color: var(--zm-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
 /* marquee strip */
 .zm-strip {
   padding: 34px 0;
@@ -906,7 +937,7 @@ a.zm-cap:hover .zm-go {
   font-style: normal;
   color: var(--zm-orange);
 }
-.zm-field input,
+.zm-field input:not([type="checkbox"]):not([type="radio"]),
 .zm-field select,
 .zm-field textarea {
   width: 100%;
@@ -920,11 +951,19 @@ a.zm-cap:hover .zm-go {
   padding: 4px 0;
   transition: border-color 0.2s;
 }
-.zm-field input:focus,
+.zm-field input:not([type="checkbox"]):not([type="radio"]):focus,
 .zm-field select:focus,
 .zm-field textarea:focus {
   border-bottom-color: var(--zm-orange);
   outline: none;
+}
+/* Checkboxes and radios (clipper application form) keep their native
+   size instead of being stretched to the field's full width. */
+.zm-field input[type="checkbox"],
+.zm-field input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  flex: none;
 }
 .zm-field textarea {
   resize: vertical;
