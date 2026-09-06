@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   AUDIENCE_PERCENT_RANGES,
   CLIPS_PER_DAY_OPTIONS,
@@ -273,8 +275,21 @@ function validate(data: FormData): Errors {
   return errors;
 }
 
+// No Meta Pixel or analytics script is installed anywhere in this codebase
+// (checked: no fbq/gtag/dataLayer, no analytics package, no pixel <script>).
+// This is a placeholder wiring point only — it does nothing until a pixel is
+// actually added to the site (typically a <script> in the root layout plus a
+// call to `window.fbq` here). Left as a no-op so a future pixel install has
+// one obvious place to plug a "Lead" event into on successful submission.
+function trackClipperApplicationLead() {
+  // if (typeof window !== "undefined" && typeof window.fbq === "function") {
+  //   window.fbq("track", "Lead", { content_name: "Be a Clipper application" });
+  // }
+}
+
 export default function ClipperApplicationForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const router = useRouter();
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [errors, setErrors] = useState<Errors>({});
 
@@ -345,34 +360,23 @@ export default function ClipperApplicationForm() {
         return;
       }
 
-      setStatus("done");
+      trackClipperApplicationLead();
       form.reset();
+      router.push("/be-a-clipper/thanks");
     } catch {
       setErrorMessage("Something went wrong. Please try again.");
       setStatus("error");
     }
   }
 
-  if (status === "done") {
-    return (
-      <div className="glass-panel-light rounded-[20px] p-8">
-        <h3 className="font-display text-xl font-semibold text-ink-navy">
-          Application received.
-        </h3>
-        <p className="mt-2 text-sm text-ink-navy/65">
-          Our team reviews every application and responds within 24 to 48
-          hours, on the email or WhatsApp number you gave us.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-12">
-      {/* Honeypot — hidden from real visitors, bots tend to fill it */}
-      <div className="absolute -left-[9999px] top-auto" aria-hidden="true">
-        <label htmlFor="website">Website</label>
-        <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
+      {/* Honeypot — hidden from real visitors, bots tend to fill it in.
+          sr-only clips it via CSS rather than display:none (some bots skip
+          display:none fields), aria-hidden keeps it out of assistive tech,
+          and there's no label at all, visible or not. */}
+      <div className="sr-only" aria-hidden="true">
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="space-y-6">
@@ -507,6 +511,18 @@ export default function ClipperApplicationForm() {
           .
         </p>
       )}
+
+      <p className="text-xs text-ink-navy/50">
+        By submitting this application you agree to our{" "}
+        <Link href="/privacy" className="underline hover:text-ink-navy/70">
+          Privacy Policy
+        </Link>{" "}
+        and{" "}
+        <Link href="/terms" className="underline hover:text-ink-navy/70">
+          Terms &amp; Conditions
+        </Link>
+        .
+      </p>
 
       <button
         type="submit"

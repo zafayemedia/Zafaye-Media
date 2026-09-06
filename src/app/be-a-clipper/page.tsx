@@ -20,6 +20,9 @@ import {
   CLIPPER_PAYMENT_FACTS,
   CLIPPER_REQUIREMENTS,
   CLIPPER_STEPS,
+  CLIPPER_TRUST_STRIP,
+  CLIPPER_WHAT_HAPPENS_NEXT,
+  CLIPPER_WHAT_HAPPENS_NEXT_NOTE,
   CLIPPER_WHAT_WE_DO,
 } from "@/lib/clipper-data";
 
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 const WHAT_WE_DO_ICONS = [Megaphone, Unlock, ClipboardCheck, ShieldCheck];
-const PAYMENT_ICONS = [Eye, Wallet, Banknote, TrendingUp];
+const PAYMENT_ICONS = [Eye, Wallet, Banknote, TrendingUp, CircleCheck];
 
 export default function BeAClipperPage() {
   return (
@@ -57,6 +60,24 @@ export default function BeAClipperPage() {
               >
                 Apply Now
               </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Trust strip */}
+      <section className="bg-ink-navy">
+        <div className="mx-auto max-w-6xl px-6 py-8">
+          <Reveal>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+              {CLIPPER_TRUST_STRIP.map((item) => (
+                <div
+                  key={item}
+                  className="glass-panel rounded-full px-5 py-3 text-center text-xs text-white/80 sm:text-sm"
+                >
+                  {item}
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>
@@ -176,7 +197,7 @@ export default function BeAClipperPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {CLIPPER_PAYMENT_FACTS.map((fact, i) => {
               const Icon = PAYMENT_ICONS[i];
               return (
@@ -212,6 +233,27 @@ export default function BeAClipperPage() {
           <Reveal delay={100}>
             <div className="mt-10">
               <ClipperApplicationForm />
+            </div>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <div className="glass-panel-light mt-10 rounded-[20px] p-7">
+              <h3 className="font-display text-sm uppercase tracking-[0.15em] text-ink-navy/50">
+                What happens after you apply
+              </h3>
+              <ol className="mt-5 space-y-4">
+                {CLIPPER_WHAT_HAPPENS_NEXT.map((item) => (
+                  <li key={item.step} className="flex gap-4">
+                    <span className="font-display shrink-0 text-sm text-ink-navy/40">
+                      {item.step}
+                    </span>
+                    <p className="text-sm text-ink-navy/75">{item.body}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-6 border-t border-ink-navy/10 pt-4 text-xs text-ink-navy/50">
+                {CLIPPER_WHAT_HAPPENS_NEXT_NOTE}
+              </p>
             </div>
           </Reveal>
         </div>

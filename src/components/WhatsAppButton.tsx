@@ -1,9 +1,19 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { whatsappLink } from "@/lib/constants";
 
+const DEFAULT_MESSAGE = "Hi, I'd like to ask about Zafaye Media's services.";
+const CLIPPER_MESSAGE =
+  "Hi, I saw the Be a Clipper page and I have a question before applying.";
+
 export default function WhatsAppButton() {
+  const pathname = usePathname();
+  const message = pathname?.startsWith("/be-a-clipper") ? CLIPPER_MESSAGE : DEFAULT_MESSAGE;
+
   return (
     <a
-      href={whatsappLink("Hi, I'd like to ask about Zafaye Media's services.")}
+      href={whatsappLink(message)}
       target="_blank"
       rel="noreferrer"
       aria-label="Message Zafaye Media on WhatsApp"
