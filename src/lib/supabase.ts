@@ -12,16 +12,23 @@ export const supabase = isSupabaseConfigured
 export type Inquiry = {
   id?: string;
   created_at?: string;
+  // "contact" (default) is the general enquiry form; "clipping-brand" is the
+  // /clipping enquiry form. Same table, tagged so the two pipelines don't mix.
+  source?: "contact" | "clipping-brand";
   service: string;
   full_name: string;
   email: string;
   phone: string;
   city: string | null;
   country: string | null;
-  business_name: string;
-  website_or_social: string;
+  business_name: string | null;
+  website_or_social: string | null;
   ad_spend: string | null;
-  what_they_sell: string;
+  package: string | null;
+  what_they_sell: string | null;
+  footage_type: string | null;
+  category: string | null;
+  budget: string | null;
   notes: string | null;
 };
 
@@ -61,6 +68,10 @@ export type Review = {
   id?: string;
   created_at?: string;
   name: string;
+  company?: string | null;
+  // Verification only — never selected on the public read, never rendered.
+  email?: string | null;
+  service?: string | null;
   rating: number;
   comment: string;
   approved?: boolean;

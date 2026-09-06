@@ -17,10 +17,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   function handleLogoClick(event: MouseEvent) {
     if (pathname === "/") {
       event.preventDefault();

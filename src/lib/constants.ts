@@ -26,7 +26,7 @@ export const NAV_LINKS = [
 // Recruitment page for page owners/editors — a different audience from the
 // client-facing NAV_LINKS above, so it's kept out of the main nav and only
 // linked from the footer company column (Header, Footer).
-export const CLIPPER_LINK = { href: "/be-a-clipper", label: "work as a clipper" } as const;
+export const CLIPPER_LINK = { href: "/clippers", label: "work as a clipper" } as const;
 
 export const PORTFOLIO_DRIVE_LINK =
   "https://drive.google.com/drive/folders/1g2WE2J9VWGClVj6OUCNfXuw8iM-bBFEQ?usp=sharing";

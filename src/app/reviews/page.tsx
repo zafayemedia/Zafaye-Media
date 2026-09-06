@@ -1,12 +1,10 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import ReviewForm from "@/components/ReviewForm";
-import Reveal from "@/components/Reveal";
 import { isSupabaseConfigured, supabase, type Review } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "Reviews — Zafaye Media",
-  description: "Reviews from Zafaye Media clients.",
+  description: "Client reviews for Zafaye Media. Published only after the working relationship is verified.",
 };
 
 // Without this, Next.js prerenders this page once at build time and it
@@ -18,73 +16,129 @@ async function getApprovedReviews(): Promise<Review[]> {
 
   const { data, error } = await supabase
     .from("reviews")
+    .select("id, created_at, name, company, rating, comment")
+    .eq("approved", true)
+    .order("created_at", { ascending: false });
+
+  if (!error && data) return data as Review[];
+
+  // The `company` column is new (brand-black rebuild migration). Until that
+  // migration has been run in Supabase, fall back to the original column
+  // set rather than showing no reviews at all.
+  const fallback = await supabase
+    .from("reviews")
     .select("id, created_at, name, rating, comment")
     .eq("approved", true)
     .order("created_at", { ascending: false });
 
-  if (error || !data) return [];
-  return data as Review[];
+  if (fallback.error || !fallback.data) return [];
+  return fallback.data as Review[];
 }
 
 export default async function ReviewsPage() {
   const reviews = await getApprovedReviews();
 
   return (
-    <div className="image-section min-h-screen">
-      <div className="image-section-media opacity-70">
-        <Image src="/images/reviews-texture.jpeg" alt="" fill priority sizes="100vw" />
-      </div>
-      <div className="image-section-overlay" />
-      <div className="image-section-content mx-auto max-w-6xl px-6 py-16 pt-32 md:py-24 md:pt-40">
-        <Reveal>
-          <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">Reviews</p>
-          <h1 className="headline mt-3 text-4xl text-white md:text-6xl">Unedited</h1>
-        </Reveal>
-
-        <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
-          <div>
-            {reviews.length === 0 ? (
-              <p className="text-sm text-steel">
-                No reviews are published yet. Submitted reviews are checked
-                before they go live here.
-              </p>
-            ) : (
-              <div className="grid gap-6 sm:grid-cols-2">
-                {reviews.map((review, i) => (
-                  <Reveal key={review.id} delay={i * 60}>
-                    <div className="glass-panel tilt-card rounded-[20px] p-6">
-                      <p className="font-display text-sm text-zafaye-orange">
-                        {"★".repeat(review.rating)}
-                        <span className="text-steel">
-                          {"★".repeat(5 - review.rating)}
-                        </span>
-                      </p>
-                      <p className="mt-3 text-sm text-white/85">{review.comment}</p>
-                      <p className="font-display mt-4 text-xs uppercase tracking-[0.1em] text-steel">
-                        {review.name}
-                      </p>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            )}
+    <div className="zm-page">
+      <section className="zm-phead">
+        <div className="zm-glow" aria-hidden="true" />
+        <div className="zm-wrap">
+          <div className="zm-meta">
+            <span>reviews</span>
+            <span>published after approval</span>
           </div>
+          <h1 className="zm-disp zm-h-xl">
+            checked,
+            <br />
+            not claimed.
+          </h1>
+          <p className="zm-body">
+            Every review below was left by a client we have actually worked with. Nothing is
+            published until we have confirmed it, and nothing is edited once it is.
+          </p>
+        </div>
+      </section>
 
-          <Reveal delay={100}>
+      <section className="zm-sec">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">01</span>
+            <h2>what clients say</h2>
+          </div>
+          {reviews.length === 0 ? (
+            <p className="zm-body">
+              Reviews are being collected. Check back soon, or be the first to leave one below.
+            </p>
+          ) : (
+            <div className="zm-voices">
+              {reviews.map((review) => (
+                <article key={review.id} className="zm-voice">
+                  <div className="zm-stars" aria-hidden="true">
+                    {"★".repeat(review.rating)}
+                    <span style={{ color: "var(--zm-dim)" }}>{"★".repeat(5 - review.rating)}</span>
+                  </div>
+                  <blockquote>{review.comment}</blockquote>
+                  <div className="zm-who">
+                    <b>{review.name}</b>
+                    {review.company && <small>{review.company}</small>}
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="zm-sec" id="write">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">02</span>
+            <h2>leave a review</h2>
+          </div>
+          <div className="zm-two">
             <div>
-              <h2 className="font-display text-lg font-semibold text-white">
-                Leave a review
-              </h2>
-              <p className="mt-2 text-sm text-steel">
-                Checked before it&apos;s published — won&apos;t appear immediately.
+              <p className="zm-disp zm-h-lg" style={{ marginBottom: "30px" }}>
+                worked with us?
+                <br />
+                say so honestly.
               </p>
-              <div className="mt-6">
-                <ReviewForm />
+              <p className="zm-body">
+                Reviews are read before they go up, and we publish the critical ones too. What we
+                will not publish is anything from someone we have never worked with.
+              </p>
+              <div className="zm-note-box">
+                <p>
+                  Submitted reviews are held for approval and are not visible on this page until
+                  we have verified the working relationship.
+                </p>
               </div>
             </div>
-          </Reveal>
+            <ReviewForm />
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section className="zm-cta">
+        <div className="zm-glow" aria-hidden="true" style={{ top: "50%" }} />
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">03</span>
+            <h2>not a client yet</h2>
+          </div>
+          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
+            read them,
+            <br />
+            then check us.
+          </p>
+          <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
+            Ask for the client behind any review here and we will connect you, with their
+            permission.
+          </p>
+          <a href="/contact" className="zm-btn">
+            request a free proposal <span>&#8594;</span>
+          </a>
+        </div>
+      </section>
     </div>
   );
 }

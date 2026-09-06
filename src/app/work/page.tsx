@@ -1,95 +1,130 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
+import WorkGrid, { CATEGORY, CATEGORY_LABEL } from "@/components/WorkGrid";
 import { CASE_STUDIES } from "@/lib/portfolio-data";
-import { inquireHref } from "@/lib/inquire";
-import { PORTFOLIO_DRIVE_LINK } from "@/lib/constants";
-import CountUp from "@/components/CountUp";
-import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Portfolio — Zafaye Media",
+  title: "Case Studies — Zafaye Media",
   description:
-    "Real client results from Zafaye Media's Meta ads and lead generation campaigns.",
+    "Selected client work from Zafaye Media across paid social, content, store builds and branding.",
 };
 
-export default function PortfolioPage() {
+const FEATURED_CLIENT = "MyLight.pk";
+
+export default function WorkPage() {
+  const featured = CASE_STUDIES.find((c) => c.client === FEATURED_CLIENT)!;
+
   return (
-    <div>
-      <section className="image-section">
-        <div className="image-section-media">
-          <Image src="/images/portfolio-banner.jpeg" alt="" fill priority sizes="100vw" />
-        </div>
-        <div className="image-section-overlay" />
-        <div className="image-section-content mx-auto max-w-6xl px-6 pb-16 pt-32 md:pb-20 md:pt-40">
-          <Reveal>
-            <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">Portfolio</p>
-            <h1 className="headline mt-3 text-4xl text-white md:text-6xl">Real clients. Real numbers.</h1>
-            <p className="mt-4 max-w-md text-sm text-steel md:text-base">
-              No cherry-picked results. What&apos;s here is what happened.
-            </p>
-            <div className="mt-8">
-              <a
-                href={PORTFOLIO_DRIVE_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className="glass-panel glass-panel-hover font-display inline-block rounded-full px-7 py-3.5 text-sm uppercase tracking-[0.1em] text-white"
-              >
-                View photos &amp; videos
-              </a>
-            </div>
-          </Reveal>
+    <div className="zm-page">
+      <section className="zm-phead">
+        <div className="zm-glow" aria-hidden="true" />
+        <div className="zm-wrap">
+          <div className="zm-meta">
+            <span>selected work</span>
+            <span>verified case studies</span>
+          </div>
+          <h1 className="zm-disp zm-h-xl">
+            ask any of them.
+            <br />
+            that is the point.
+          </h1>
+          <p className="zm-body">
+            Every account below is one the client owns and can log into today. Nothing here is a
+            number we cannot open inside the platform and show you.
+          </p>
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {CASE_STUDIES.map((study, i) => (
-              <Reveal key={study.client} delay={i * 60}>
-                <div className="glass-panel-light tilt-card flex h-full flex-col rounded-[20px] p-7">
-                  <p className="font-display text-xs uppercase tracking-[0.15em] text-ink-navy/50">
-                    {study.category}
-                  </p>
-                  <h2 className="font-display mt-2 text-xl font-semibold text-ink-navy">
-                    {study.client}
-                  </h2>
-
-                  <div className="mt-6">
-                    <p className="font-display text-3xl font-bold tabular-nums text-ink-navy">
-                      <CountUp value={study.stat} />
-                    </p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-navy/50">
-                      {study.statLabel}
-                    </p>
-                  </div>
-
-                  <p className="mt-5 flex-1 text-sm text-ink-navy/75">
-                    {study.summary}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+      <section className="zm-sec">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">01</span>
+            <h2>featured</h2>
+          </div>
+          <div className="zm-feat">
+            <div>
+              <span className="zm-cat">{CATEGORY_LABEL[CATEGORY[featured.client]]}</span>
+              <p className="zm-who">{featured.client}</p>
+              <p>{featured.summary}</p>
+              <Link href="/contact" className="zm-btn zm-btn-line" style={{ marginTop: "34px" }}>
+                request the full breakdown <span>&#8594;</span>
+              </Link>
+            </div>
+            <div>
+              <p className="zm-lbl">result</p>
+              <div className="zm-metric zm-lead">
+                <b>{featured.stat}</b>
+                <span>{featured.statLabel}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-ink-navy">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
-          <Reveal>
-            <div className="glass-panel tilt-card flex flex-col items-start justify-between gap-6 rounded-[24px] p-8 md:flex-row md:items-center">
-              <div>
-                <h3 className="headline text-2xl text-white">Are we a fit?</h3>
-                <p className="mt-2 text-sm text-steel">Tell us what you sell. We'll tell you honestly.</p>
-              </div>
-              <Link
-                href={inquireHref("General inquiry from Portfolio")}
-                className="font-display shrink-0 rounded-full bg-zafaye-orange px-6 py-3 text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
-              >
-                Get in touch
-              </Link>
+      <section className="zm-sec">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">02</span>
+            <h2>all work</h2>
+          </div>
+          <WorkGrid excludeClient={FEATURED_CLIENT} />
+        </div>
+      </section>
+
+      <section className="zm-sec">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">03</span>
+            <h2>why these can be checked</h2>
+          </div>
+          <div className="zm-steps">
+            <div className="zm-step">
+              <span className="zm-n">01</span>
+              <h3>your account, your name</h3>
+              <p>
+                Campaigns run inside your own Business Portfolio. If we stop working together,
+                nothing gets taken away with us.
+              </p>
             </div>
-          </Reveal>
+            <div className="zm-step">
+              <span className="zm-n">02</span>
+              <h3>weekly, in plain language</h3>
+              <p>
+                Spend, result and what changed. No dashboard screenshot that hides the number you
+                actually care about.
+              </p>
+            </div>
+            <div className="zm-step">
+              <span className="zm-n">03</span>
+              <h3>references on request</h3>
+              <p>
+                Ask for the client behind any case study here and we will connect you, with their
+                permission.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="zm-cta">
+        <div className="zm-glow" aria-hidden="true" style={{ top: "50%" }} />
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">04</span>
+            <h2>your turn</h2>
+          </div>
+          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
+            see what we would do
+            <br />
+            with your account.
+          </p>
+          <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
+            Send your website and what you are spending now. You get a written plan back, whether
+            or not you work with us.
+          </p>
+          <Link href="/contact" className="zm-btn">
+            request a free proposal <span>&#8594;</span>
+          </Link>
         </div>
       </section>
     </div>

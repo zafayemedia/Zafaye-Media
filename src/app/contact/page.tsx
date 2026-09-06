@@ -1,59 +1,93 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import InquiryForm from "@/components/InquiryForm";
-import Reveal from "@/components/Reveal";
 import { SITE, whatsappLink } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact — Zafaye Media",
-  description: "Get in touch with Zafaye Media directly or send a general inquiry.",
+  description: "Send a brief to Zafaye Media. WhatsApp, email, or the enquiry form. Replies within one working day.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ package?: string }>;
+}) {
+  const params = await searchParams;
+
   return (
-    <div className="mx-auto max-w-6xl px-6 pb-16 pt-32 md:pb-24 md:pt-40">
-      <Reveal>
-        <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">Contact</p>
-        <h1 className="headline mt-3 text-4xl text-white md:text-6xl">Talk to us</h1>
-      </Reveal>
-
-      <div className="mt-14 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
-        <Reveal delay={80}>
-          <div className="glass-panel tilt-card rounded-[20px] p-7">
-            <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-              Email
-            </p>
-            <a
-              href={`mailto:${SITE.email}`}
-              className="mt-2 block text-lg text-white hover:text-zafaye-orange"
-            >
-              {SITE.email}
-            </a>
-
-            <p className="font-display mt-8 text-xs uppercase tracking-[0.1em] text-steel">
-              WhatsApp
-            </p>
-            <a
-              href={whatsappLink("Hi, I'd like to get in touch with Zafaye Media.")}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 block text-lg text-white hover:text-zafaye-orange"
-            >
-              {SITE.phoneDisplay}
-            </a>
-
-            <p className="font-display mt-8 text-xs uppercase tracking-[0.1em] text-steel">
-              Registered as
-            </p>
-            <p className="mt-2 text-sm text-white/80">
-              {SITE.legalName}, {SITE.legalAddress}
-            </p>
+    <div className="zm-page">
+      <section className="zm-phead">
+        <div className="zm-glow" aria-hidden="true" />
+        <div className="zm-wrap">
+          <div className="zm-meta">
+            <span>contact</span>
+            <span>replies within 1 working day</span>
           </div>
-        </Reveal>
+          <h1 className="zm-disp zm-h-xl">
+            got a brief?
+            <br />
+            let&apos;s talk.
+          </h1>
+          <p className="zm-body">
+            Send what you sell and what you are spending now. You get a written plan and a
+            recommended package back, whether or not you end up working with us.
+          </p>
+        </div>
+      </section>
 
-        <Reveal delay={140}>
-          <InquiryForm service="General inquiry from Contact" />
-        </Reveal>
-      </div>
+      <section className="zm-sec">
+        <div className="zm-wrap">
+          <div className="zm-contact-grid">
+            <div>
+              <div className="zm-sec-label">
+                <span className="zm-mark-num">01</span>
+                <h2>direct</h2>
+              </div>
+              <div className="zm-direct">
+                <a href={whatsappLink("Hi, I'd like to get in touch with Zafaye Media.")} target="_blank" rel="noreferrer">
+                  <small>whatsapp — fastest</small>
+                  <b>{SITE.phoneDisplay}</b>
+                </a>
+                <a href={`mailto:${SITE.email}`}>
+                  <small>email</small>
+                  <b>{SITE.email}</b>
+                </a>
+                <a href="https://instagram.com/zafaye.media" target="_blank" rel="noreferrer">
+                  <small>instagram</small>
+                  <b>@zafaye.media</b>
+                </a>
+                <div>
+                  <small>registered</small>
+                  <b>
+                    {SITE.legalName}, {SITE.legalAddress}
+                  </b>
+                </div>
+                <div>
+                  <small>working hours</small>
+                  <b>Mon to Sat, 10:00 to 19:00 PKT</b>
+                </div>
+              </div>
+              <div className="zm-note-box">
+                <p>
+                  Own a page and want to clip for campaigns instead?{" "}
+                  <Link href="/clippers" style={{ color: "var(--zm-orange)" }}>
+                    Apply as a clipper here.
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <div className="zm-sec-label">
+                <span className="zm-mark-num">02</span>
+                <h2>send a brief</h2>
+              </div>
+              <InquiryForm defaultPackage={params.package || ""} />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

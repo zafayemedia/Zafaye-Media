@@ -20,7 +20,7 @@ type Errors = Record<string, string>;
 function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
   return (
-    <p id={id} role="alert" className="mt-2 text-xs text-zafaye-orange">
+    <p id={id} role="alert" style={{ color: "var(--zm-orange)", fontSize: "0.8rem", marginTop: "8px" }}>
       {message}
     </p>
   );
@@ -29,23 +29,28 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 function FieldShell({
   name,
   label,
+  required,
   note,
   error,
   children,
 }: {
   name: string;
   label: string;
+  required?: boolean;
   note?: string;
   error?: string;
   children: ReactNode;
 }) {
   return (
-    <div>
-      <label htmlFor={name} className="font-display text-xs uppercase tracking-[0.1em] text-ink-navy/50">
-        {label} {note && <span className="normal-case text-ink-navy/40">{note}</span>}
+    <div className="zm-field">
+      <label htmlFor={name}>
+        {label} {required && <em>*</em>}{" "}
+        {note && <span style={{ textTransform: "none", color: "var(--zm-dim)" }}>{note}</span>}
       </label>
-      <div className="mt-2">{children}</div>
-      <FieldError id={`${name}-error`} message={error} />
+      <div>
+        {children}
+        <FieldError id={`${name}-error`} message={error} />
+      </div>
     </div>
   );
 }
@@ -69,7 +74,7 @@ function TextField({
 }) {
   const error = errors[name];
   return (
-    <FieldShell name={name} label={label} note={note} error={error}>
+    <FieldShell name={name} label={label} required={required} note={note} error={error}>
       <input
         id={name}
         name={name}
@@ -78,7 +83,6 @@ function TextField({
         placeholder={placeholder}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="glass-input-light w-full rounded-xl px-4 py-3 text-sm text-ink-navy placeholder:text-ink-navy/40"
       />
     </FieldShell>
   );
@@ -101,7 +105,7 @@ function SelectField({
 }) {
   const error = errors[name];
   return (
-    <FieldShell name={name} label={label} error={error}>
+    <FieldShell name={name} label={label} required={required} error={error}>
       <select
         id={name}
         name={name}
@@ -109,13 +113,12 @@ function SelectField({
         defaultValue={defaultValue ?? ""}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="glass-input-light w-full rounded-xl px-4 py-3 text-sm text-ink-navy"
       >
-        <option value="" disabled className="bg-white">
-          Select an option
+        <option value="" disabled>
+          select an option
         </option>
         {options.map((option) => (
-          <option key={option} value={option} className="bg-white">
+          <option key={option} value={option}>
             {option}
           </option>
         ))}
@@ -145,7 +148,6 @@ function TextareaField({
         placeholder={placeholder}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${name}-error` : undefined}
-        className="glass-input-light w-full rounded-xl px-4 py-3 text-sm text-ink-navy placeholder:text-ink-navy/40"
       />
     </FieldShell>
   );
@@ -164,20 +166,28 @@ function RadioGroup({
 }) {
   const error = errors[name];
   return (
-    <fieldset>
-      <legend className="font-display text-xs uppercase tracking-[0.1em] text-ink-navy/50">{legend}</legend>
-      <div className="mt-3 space-y-2">
+    <fieldset className="zm-field" style={{ border: 0, padding: "22px 0" }}>
+      <legend style={{ color: "var(--zm-muted)", fontSize: "0.9rem", textTransform: "lowercase" }}>
+        {legend}
+      </legend>
+      <div style={{ display: "grid", gap: "10px", marginTop: "8px" }}>
         {options.map((option) => (
           <label
             key={option}
-            className="glass-input-light flex items-center gap-3 rounded-xl px-4 py-3 text-sm text-ink-navy/80"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              fontSize: "0.9rem",
+              color: "var(--zm-muted)",
+              cursor: "pointer",
+            }}
           >
             <input
               type="radio"
               name={name}
               value={option}
-              className="h-4 w-4 shrink-0 accent-zafaye-orange"
-              aria-invalid={Boolean(error)}
+              style={{ accentColor: "var(--zm-orange)" }}
               aria-describedby={error ? `${name}-error` : undefined}
             />
             {option}
@@ -192,13 +202,23 @@ function RadioGroup({
 function CheckboxField({ name, label, errors }: { name: string; label: string; errors: Errors }) {
   const error = errors[name];
   return (
-    <div>
-      <label className="glass-input-light flex items-start gap-3 rounded-xl px-4 py-3 text-sm text-ink-navy/80">
+    <div className="zm-field" style={{ gridTemplateColumns: "1fr" }}>
+      <label
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          gap: "12px",
+          fontSize: "0.9rem",
+          color: "var(--zm-muted)",
+          textTransform: "none",
+          cursor: "pointer",
+        }}
+      >
         <input
           type="checkbox"
           name={name}
           value="true"
-          className="mt-0.5 h-4 w-4 shrink-0 accent-zafaye-orange"
+          style={{ marginTop: "3px", accentColor: "var(--zm-orange)" }}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${name}-error` : undefined}
         />
@@ -362,7 +382,7 @@ export default function ClipperApplicationForm() {
 
       trackClipperApplicationLead();
       form.reset();
-      router.push("/be-a-clipper/thanks");
+      router.push("/clippers/thanks");
     } catch {
       setErrorMessage("Something went wrong. Please try again.");
       setStatus("error");
@@ -370,7 +390,7 @@ export default function ClipperApplicationForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-12">
+    <form onSubmit={handleSubmit} noValidate>
       {/* Honeypot — hidden from real visitors, bots tend to fill it in.
           sr-only clips it via CSS rather than display:none (some bots skip
           display:none fields), aria-hidden keeps it out of assistive tech,
@@ -379,158 +399,111 @@ export default function ClipperApplicationForm() {
         <input type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="space-y-6">
-        <h3 className="font-display text-sm uppercase tracking-[0.15em] text-ink-navy/50">
-          About you
-        </h3>
-        <div className="grid gap-6 sm:grid-cols-2">
-          <TextField name="full_name" label="Full name" required errors={errors} placeholder="Your name" />
-          <TextField
-            name="email"
-            label="Email address"
-            type="email"
-            required
-            errors={errors}
-            placeholder="you@example.com"
-          />
-        </div>
-        <TextField
-          name="whatsapp"
-          label="WhatsApp number"
-          type="tel"
-          required
-          note="(with country code)"
-          errors={errors}
-          placeholder="+92 300 1234567"
-        />
-        <div className="grid gap-6 sm:grid-cols-2">
-          <SelectField
-            name="country"
-            label="Country"
-            options={COUNTRIES}
-            required
-            defaultValue="Pakistan"
-            errors={errors}
-          />
-          <TextField name="city" label="City" required errors={errors} placeholder="e.g. Lahore" />
-        </div>
-        <CheckboxField name="age_confirmed" label="I am 18 years or older" errors={errors} />
-      </div>
+      <p className="zm-mark-num" style={{ marginBottom: "-10px" }}>
+        about you
+      </p>
+      <TextField name="full_name" label="full name" required errors={errors} placeholder="your name" />
+      <TextField name="email" label="email address" type="email" required errors={errors} placeholder="you@example.com" />
+      <TextField
+        name="whatsapp"
+        label="whatsapp number"
+        type="tel"
+        required
+        note="(with country code)"
+        errors={errors}
+        placeholder="+92 300 1234567"
+      />
+      <SelectField name="country" label="country" options={COUNTRIES} required defaultValue="Pakistan" errors={errors} />
+      <TextField name="city" label="city" required errors={errors} placeholder="e.g. Lahore" />
+      <CheckboxField name="age_confirmed" label="I am 18 years or older" errors={errors} />
 
-      <div className="space-y-6 border-t border-ink-navy/10 pt-10">
-        <div>
-          <h3 className="font-display text-sm uppercase tracking-[0.15em] text-ink-navy/50">
-            Your pages
-          </h3>
-          <p className="mt-2 text-xs text-ink-navy/50">
-            Fill in at least one. Leave the rest blank.
-          </p>
-          <FieldError id="page_urls-error" message={errors.page_urls} />
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2">
-          <TextField name="instagram_url" label="Instagram profile URL" type="url" errors={errors} placeholder="https://instagram.com/yourpage" />
-          <TextField name="tiktok_url" label="TikTok profile URL" type="url" errors={errors} placeholder="https://tiktok.com/@yourpage" />
-          <TextField name="youtube_url" label="YouTube channel URL" type="url" errors={errors} placeholder="https://youtube.com/@yourpage" />
-          <TextField name="facebook_url" label="Facebook page URL" type="url" errors={errors} placeholder="https://facebook.com/yourpage" />
-        </div>
-        <TextField name="other_platform_url" label="Other platform URL" type="url" errors={errors} placeholder="Optional" />
-      </div>
+      <p className="zm-mark-num" style={{ margin: "40px 0 -10px" }}>
+        your pages — fill in at least one
+      </p>
+      <FieldError id="page_urls-error" message={errors.page_urls} />
+      <TextField name="instagram_url" label="instagram url" type="url" errors={errors} placeholder="https://instagram.com/yourpage" />
+      <TextField name="tiktok_url" label="tiktok url" type="url" errors={errors} placeholder="https://tiktok.com/@yourpage" />
+      <TextField name="youtube_url" label="youtube url" type="url" errors={errors} placeholder="https://youtube.com/@yourpage" />
+      <TextField name="facebook_url" label="facebook url" type="url" errors={errors} placeholder="https://facebook.com/yourpage" />
+      <TextField name="other_platform_url" label="other platform" type="url" errors={errors} placeholder="optional" />
 
-      <div className="space-y-6 border-t border-ink-navy/10 pt-10">
-        <h3 className="font-display text-sm uppercase tracking-[0.15em] text-ink-navy/50">
-          Page details
-        </h3>
-        <div className="grid gap-6 sm:grid-cols-2">
-          <SelectField name="main_platform" label="Main platform" options={MAIN_PLATFORMS} required errors={errors} />
-          <SelectField name="follower_range" label="Approximate followers on main page" options={FOLLOWER_RANGES} required errors={errors} />
-          <SelectField name="avg_views_range" label="Average views per post (last 10 posts)" options={VIEWS_RANGES} required errors={errors} />
-          <TextField name="top_audience_country" label="Top audience country" required errors={errors} placeholder="e.g. Pakistan" />
-          <SelectField
-            name="audience_percent_tier1"
-            label="% audience from US, UK, Canada, or Australia"
-            options={AUDIENCE_PERCENT_RANGES}
-            required
-            errors={errors}
-          />
-          <SelectField name="niche" label="Page niche" options={NICHES} required errors={errors} />
-          <SelectField name="page_age_range" label="How long have you run this page" options={PAGE_AGE_RANGES} required errors={errors} />
-        </div>
-      </div>
+      <p className="zm-mark-num" style={{ margin: "40px 0 -10px" }}>
+        page details
+      </p>
+      <SelectField name="main_platform" label="main platform" options={MAIN_PLATFORMS} required errors={errors} />
+      <SelectField name="follower_range" label="followers on main page" options={FOLLOWER_RANGES} required errors={errors} />
+      <SelectField name="avg_views_range" label="average views (last 10 posts)" options={VIEWS_RANGES} required errors={errors} />
+      <TextField name="top_audience_country" label="top audience country" required errors={errors} placeholder="e.g. Pakistan" />
+      <SelectField
+        name="audience_percent_tier1"
+        label="% audience from us, uk, canada, australia"
+        options={AUDIENCE_PERCENT_RANGES}
+        required
+        errors={errors}
+      />
+      <SelectField name="niche" label="page niche" options={NICHES} required errors={errors} />
+      <SelectField name="page_age_range" label="how long have you run this page" options={PAGE_AGE_RANGES} required errors={errors} />
 
-      <div className="space-y-6 border-t border-ink-navy/10 pt-10">
-        <h3 className="font-display text-sm uppercase tracking-[0.15em] text-ink-navy/50">
-          Your editing
-        </h3>
-        <RadioGroup
-          name="edits_own_clips"
-          legend="Do you edit your own clips?"
-          options={["Yes, I edit everything myself", "I edit some of it", "No, someone else edits"]}
-          errors={errors}
-        />
-        <TextField name="editing_software" label="Editing software you use" errors={errors} placeholder="Optional" />
-        <TextareaField
-          name="sample_clips"
-          label="Link to 2 or 3 clips you edited yourself"
-          placeholder="Optional"
-          errors={errors}
-        />
-      </div>
+      <p className="zm-mark-num" style={{ margin: "40px 0 -10px" }}>
+        your editing
+      </p>
+      <RadioGroup
+        name="edits_own_clips"
+        legend="do you edit your own clips"
+        options={["Yes, I edit everything myself", "I edit some of it", "No, someone else edits"]}
+        errors={errors}
+      />
+      <TextField name="editing_software" label="editing software you use" errors={errors} placeholder="optional" />
+      <TextareaField name="sample_clips" label="link to 2 or 3 clips you edited" placeholder="optional" errors={errors} />
 
-      <div className="space-y-6 border-t border-ink-navy/10 pt-10">
-        <h3 className="font-display text-sm uppercase tracking-[0.15em] text-ink-navy/50">
-          Commitment
-        </h3>
-        <SelectField name="clips_per_day" label="How many clips can you post per day" options={CLIPS_PER_DAY_OPTIONS} required errors={errors} />
-        <RadioGroup name="done_paid_clipping" legend="Have you done paid clipping before?" options={["Yes", "No"]} errors={errors} />
-        <TextareaField name="paid_clipping_details" label="If yes, briefly describe" placeholder="Optional" errors={errors} />
-        <TextareaField name="notes" label="Anything else we should know" placeholder="Optional" errors={errors} />
-      </div>
+      <p className="zm-mark-num" style={{ margin: "40px 0 -10px" }}>
+        commitment
+      </p>
+      <SelectField name="clips_per_day" label="clips you can post per day" options={CLIPS_PER_DAY_OPTIONS} required errors={errors} />
+      <RadioGroup name="done_paid_clipping" legend="have you done paid clipping before" options={["Yes", "No"]} errors={errors} />
+      <TextareaField name="paid_clipping_details" label="if yes, briefly describe" placeholder="optional" errors={errors} />
+      <TextareaField name="notes" label="anything else we should know" placeholder="optional" errors={errors} />
 
-      <div className="space-y-4 border-t border-ink-navy/10 pt-10">
-        <h3 className="font-display text-sm uppercase tracking-[0.15em] text-ink-navy/50">
-          Consent
-        </h3>
-        <CheckboxField
-          name="accuracy_consent"
-          label="I confirm the information above is accurate and the page I am submitting is my own."
-          errors={errors}
-        />
-        <CheckboxField
-          name="organic_consent"
-          label="I understand all reach must be organic. Botting, buying views, or paid boosting is not allowed."
-          errors={errors}
-        />
-      </div>
+      <p className="zm-mark-num" style={{ margin: "40px 0 -10px" }}>
+        consent
+      </p>
+      <CheckboxField
+        name="accuracy_consent"
+        label="I confirm the information above is accurate and the page I am submitting is my own."
+        errors={errors}
+      />
+      <CheckboxField
+        name="organic_consent"
+        label="I understand all reach must be organic. Botting, buying views, or paid boosting is not allowed."
+        errors={errors}
+      />
 
       {status === "error" && (
-        <p className="text-sm text-zafaye-orange">
+        <p style={{ color: "var(--zm-orange)", fontSize: "0.85rem", marginTop: "20px" }}>
           {errorMessage} You can also reach us directly at{" "}
-          <a href={`mailto:${SITE.email}`} className="underline">
+          <a href={`mailto:${SITE.email}`} style={{ textDecoration: "underline" }}>
             {SITE.email}
           </a>
           .
         </p>
       )}
 
-      <p className="text-xs text-ink-navy/50">
-        By submitting this application you agree to our{" "}
-        <Link href="/privacy" className="underline hover:text-ink-navy/70">
-          Privacy Policy
-        </Link>{" "}
-        and{" "}
-        <Link href="/terms" className="underline hover:text-ink-navy/70">
-          Terms &amp; Conditions
-        </Link>
-        .
-      </p>
-
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="font-display w-full rounded-full bg-zafaye-orange px-7 py-3.5 text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90 disabled:opacity-60"
-      >
-        {status === "loading" ? "Submitting..." : "Submit Application"}
-      </button>
+      <div className="zm-form-foot">
+        <p>
+          By submitting this application you agree to our{" "}
+          <Link href="/privacy" style={{ textDecoration: "underline" }}>
+            privacy policy
+          </Link>{" "}
+          and{" "}
+          <Link href="/terms" style={{ textDecoration: "underline" }}>
+            terms &amp; conditions
+          </Link>
+          .
+        </p>
+        <button type="submit" className="zm-btn" disabled={status === "loading"}>
+          {status === "loading" ? "submitting..." : "submit application"} <span>&#8594;</span>
+        </button>
+      </div>
     </form>
   );
 }

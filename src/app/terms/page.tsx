@@ -1,60 +1,81 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { TERMS_INTRO, TERMS_LAST_UPDATED, TERMS_SECTIONS } from "@/lib/terms-data";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions — Zafaye Media",
-  description: "Zafaye Media's Terms & Conditions and Policies for all clients and engagements.",
+  description: "Terms and conditions covering work carried out by Zafaye Media.",
 };
 
 export default function TermsPage() {
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-3xl px-6 pb-16 pt-32 md:pb-24 md:pt-40">
-        <p className="font-display text-xs uppercase tracking-[0.15em] text-ink-navy/50">
-          General Service Terms — Applies to All Clients and Engagements
-        </p>
-        <h1 className="headline mt-3 text-3xl text-ink-navy md:text-5xl">
-          Terms &amp; Conditions
-        </h1>
+    <div className="zm-page">
+      <section className="zm-phead">
+        <div className="zm-glow" aria-hidden="true" />
+        <div className="zm-wrap">
+          <div className="zm-meta">
+            <span>terms &amp; conditions</span>
+            <span>general service terms</span>
+          </div>
+          <h1 className="zm-disp zm-h-xl">
+            the rules,
+            <br />
+            written plainly.
+          </h1>
+          <p className="zm-body">{TERMS_INTRO}</p>
+        </div>
+      </section>
 
-        <p className="mt-8 text-sm leading-relaxed text-ink-navy/80 md:text-base">
-          {TERMS_INTRO}
-        </p>
+      <section className="zm-sec zm-legal">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">01</span>
+            <h2>terms of service</h2>
+          </div>
 
-        <div className="mt-12 space-y-10">
-          {TERMS_SECTIONS.map((section) => (
-            <div key={section.heading}>
-              <h2 className="font-display text-lg font-semibold text-ink-navy">
-                {section.heading}
-              </h2>
-
-              {section.paragraphs?.map((paragraph, i) => (
-                <p
-                  key={i}
-                  className="mt-3 text-sm leading-relaxed text-ink-navy/75 md:text-base"
-                >
-                  {paragraph}
-                </p>
-              ))}
-
-              {section.bullets && (
-                <ul className="mt-3 space-y-2">
-                  {section.bullets.map((bullet, i) => (
-                    <li key={i} className="flex gap-3 text-sm text-ink-navy/75 md:text-base">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink-navy/30" />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              )}
+          {TERMS_SECTIONS.map((section, i) => (
+            <div key={section.heading} className="zm-clause">
+              <span className="zm-n">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{section.heading.replace(/^\d+\.\s*/, "").toLowerCase()}</h3>
+                {section.paragraphs?.map((paragraph, j) => (
+                  <p key={j}>{paragraph}</p>
+                ))}
+                {section.bullets && (
+                  <ul>
+                    {section.bullets.map((bullet, j) => (
+                      <li key={j}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
           ))}
         </div>
+      </section>
 
-        <p className="mt-14 border-t border-ink-navy/10 pt-6 text-xs text-ink-navy/50">
-          {TERMS_LAST_UPDATED}
-        </p>
-      </div>
+      <section className="zm-cta">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">02</span>
+            <h2>questions on any of this</h2>
+          </div>
+          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.2rem,6vw,4.6rem)" }}>
+            ask before
+            <br />
+            you sign.
+          </p>
+          <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
+            If a clause is unclear, we would rather explain it now than argue about it later.
+          </p>
+          <Link href="/contact" className="zm-btn">
+            get in touch <span>&#8594;</span>
+          </Link>
+          <p style={{ color: "var(--zm-dim)", fontSize: "0.8rem", marginTop: "48px" }}>
+            {TERMS_LAST_UPDATED}
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

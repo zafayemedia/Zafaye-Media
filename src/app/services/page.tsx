@@ -1,10 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
-import PricingCard from "@/components/PricingCard";
-import Reveal from "@/components/Reveal";
-import AuroraBlobs from "@/components/AuroraBlobs";
-import { inquireHref } from "@/lib/inquire";
+import Link from "next/link";
 import {
   BRANDING_TIER,
   LEADBRIDGE,
@@ -14,208 +9,416 @@ import {
 } from "@/lib/services-data";
 
 export const metadata: Metadata = {
-  title: "Services — Zafaye Media",
+  title: "Services & Pricing — Zafaye Media",
   description:
-    "Meta ads management, social media growth, branding, and website or Shopify store creation, with real package pricing.",
+    "Paid social, social and content, clipping, websites and Shopify, branding and lead handling. Full packages and pricing.",
 };
 
-function SectionHeading({
-  kicker,
-  title,
-  body,
-  tone = "dark",
-}: {
-  kicker: string;
-  title: string;
-  body?: string;
-  tone?: "dark" | "light";
-}) {
-  const isLight = tone === "light";
-  return (
-    <div className="max-w-2xl">
-      <p
-        className={`font-display text-xs uppercase tracking-[0.15em] ${
-          isLight ? "text-ink-navy/50" : "text-steel"
-        }`}
-      >
-        {kicker}
-      </p>
-      <h2 className={`headline mt-3 text-3xl md:text-4xl ${isLight ? "text-ink-navy" : "text-white"}`}>
-        {title}
-      </h2>
-      {body && (
-        <p className={`mt-4 text-sm md:text-base ${isLight ? "text-ink-navy/65" : "text-steel"}`}>
-          {body}
-        </p>
-      )}
-    </div>
-  );
+function amount(price: string) {
+  return price.replace(/^PKR\s*/i, "").toLowerCase();
 }
 
 export default function ServicesPage() {
+  const [trial, essential, advanced, dominate] = META_ADS_TIERS;
+  const [presence, growth, authority] = SOCIAL_TIERS;
+
   return (
-    <div>
-      {/* Banner */}
-      <section className="image-section">
-        <div className="image-section-media">
-          <Image src="/images/services-banner.jpeg" alt="" fill priority sizes="100vw" />
-        </div>
-        <div className="image-section-overlay" />
-        <div className="image-section-content mx-auto max-w-6xl px-6 pb-16 pt-32 md:pb-20 md:pt-40">
-          <Reveal>
-            <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">Services</p>
-            <h1 className="headline mt-3 text-4xl text-white md:text-6xl">What we run</h1>
-            <p className="mt-4 max-w-md text-sm text-steel md:text-base">
-              Everything a digital growth partner runs — ads, creative, social, and more.
-            </p>
-          </Reveal>
+    <div className="zm-page">
+      <section className="zm-phead">
+        <div className="zm-glow" aria-hidden="true" />
+        <div className="zm-wrap">
+          <div className="zm-meta">
+            <span>services &amp; pricing</span>
+            <span>all figures in pkr</span>
+          </div>
+          <h1 className="zm-disp zm-h-xl">
+            five disciplines,
+            <br />
+            one team.
+          </h1>
+          <p className="zm-body">
+            Every price on this page is the price. No setup fee appears at signature, and nothing
+            is quoted per hour. Pick the tier that matches where the business actually is, or ask
+            and we will tell you.
+          </p>
         </div>
       </section>
 
-      {/* Meta Ads */}
-      <section id="meta-ads" className="image-section">
-        <div className="image-section-media">
-          <Image src="/images/meta-ads-bg.jpeg" alt="" fill sizes="100vw" />
-        </div>
-        <div className="image-section-overlay" />
-        <div className="image-section-content mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <Reveal>
-            <SectionHeading
-              kicker="Flagship service"
-              title="Meta Ads Management"
-              body="Full campaign setup, creative, and ongoing optimization on Meta. Ad spend is billed separately by Meta, direct from your ad account."
-            />
-          </Reveal>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {META_ADS_TIERS.map((tier, i) => (
-              <Reveal key={tier.name} delay={i * 60}>
-                <PricingCard tier={tier} serviceLabel="Meta Ads" />
-              </Reveal>
-            ))}
+      {/* 01 paid social */}
+      <section className="zm-sec" id="paid">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">01</span>
+            <h2>paid social</h2>
+          </div>
+          <div className="zm-two" style={{ marginBottom: "56px" }}>
+            <p className="zm-disp zm-h-lg">
+              more budget will not fix
+              <br />a broken campaign.
+            </p>
+            <p className="zm-body">
+              Structure, targeting, creative and weekly optimization. The ad account stays in your
+              name from day one and never moves.
+            </p>
           </div>
 
-          <Reveal delay={200}>
-            <div className="glass-panel mt-10 rounded-[20px] p-7">
-              <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
-                Included from Essential up
+          <div className="zm-panels zm-p5">
+            <div className="zm-panel zm-feature">
+              <span className="zm-n">01</span>
+              <div className="zm-name">trial</div>
+              <div className="zm-amt">
+                {amount(trial.price)}
+                <small>{trial.priceNote}</small>
+              </div>
+              <ul>
+                <li>1 campaign</li>
+                <li>up to 4 creatives</li>
+                <li>pixel &amp; account setup</li>
+                <li>weekly reporting</li>
+              </ul>
+              <span className="zm-flag">start here</span>
+              <Link href="/contact?package=trial" className="zm-start">
+                start<span>&#8594;</span>
+              </Link>
+            </div>
+            <div className="zm-panel">
+              <span className="zm-n">02</span>
+              <div className="zm-name">essential</div>
+              <div className="zm-amt">
+                {amount(essential.price)}
+                <small>per month</small>
+              </div>
+              <ul>
+                <li>up to 2 campaigns</li>
+                <li>up to 8 creatives</li>
+                <li>weekly optimization</li>
+                <li>monthly report</li>
+              </ul>
+              <Link href="/contact?package=essential" className="zm-start">
+                enquire<span>&#8594;</span>
+              </Link>
+            </div>
+            <div className="zm-panel">
+              <span className="zm-n">03</span>
+              <div className="zm-name">advanced</div>
+              <div className="zm-amt">
+                {amount(advanced.price)}
+                <small>per month</small>
+              </div>
+              <ul>
+                <li>up to 4 campaigns</li>
+                <li>up to 14 creatives</li>
+                <li>retargeting &amp; a/b testing</li>
+                <li>priority support</li>
+              </ul>
+              <Link href="/contact?package=advanced" className="zm-start">
+                enquire<span>&#8594;</span>
+              </Link>
+            </div>
+            <div className="zm-panel">
+              <span className="zm-n">04</span>
+              <div className="zm-name">dominate</div>
+              <div className="zm-amt">
+                {amount(dominate.price)}
+                <small>per month</small>
+              </div>
+              <ul>
+                <li>up to 6 campaigns</li>
+                <li>up to 20 creatives</li>
+                <li>daily optimization</li>
+                <li>dedicated account manager</li>
+              </ul>
+              <Link href="/contact?package=dominate" className="zm-start">
+                enquire<span>&#8594;</span>
+              </Link>
+            </div>
+            <div className="zm-panel">
+              <span className="zm-n">05</span>
+              <div className="zm-name">custom</div>
+              <div className="zm-amt">
+                scoped
+                <small>paid plus organic,
+                  <br />
+                  priced to the brief</small>
+              </div>
+              <ul>
+                <li>multi-service retainer</li>
+                <li>built around your budget</li>
+                <li>leadbridge can be added</li>
+              </ul>
+              <Link href="/contact?package=custom" className="zm-start">
+                talk to us<span>&#8594;</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="zm-incl">
+            <h4>included from essential upward</h4>
+            <div className="zm-items">
+              {META_ADS_INCLUDED.map((item) => (
+                <p key={item}>{item.toLowerCase()}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 02 social & content */}
+      <section className="zm-sec" id="social">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">02</span>
+            <h2>social &amp; content</h2>
+          </div>
+          <div className="zm-two" style={{ marginBottom: "56px" }}>
+            <p className="zm-disp zm-h-lg">
+              built in phases.
+              <br />
+              presence, growth, authority.
+            </p>
+            <p className="zm-body">
+              Content, posting and community handled end to end. Short form and clipping sit
+              inside this line, and can also run on their own.
+            </p>
+          </div>
+
+          <div className="zm-panels zm-p3">
+            <div className="zm-panel">
+              <span className="zm-n">01</span>
+              <div className="zm-name">presence</div>
+              <div className="zm-amt">
+                {amount(presence.price)}
+                <small>per month</small>
+              </div>
+              <p className="zm-note">
+                Get the account consistent and looking like the business it represents.
               </p>
-              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {META_ADS_INCLUDED.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm text-white/85">
-                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-steel" />
-                    {item}
-                  </li>
-                ))}
+              <ul>
+                <li>consistent posting schedule</li>
+                <li>profile &amp; page optimization</li>
+                <li>content written and designed</li>
+                <li>monthly summary</li>
+              </ul>
+              <Link href="/contact?package=presence" className="zm-start">
+                enquire<span>&#8594;</span>
+              </Link>
+            </div>
+            <div className="zm-panel zm-feature">
+              <span className="zm-n">02</span>
+              <div className="zm-name">growth</div>
+              <div className="zm-amt">
+                {amount(growth.price)}
+                <small>per month</small>
+              </div>
+              <p className="zm-note">
+                Higher volume, built to grow an audience rather than maintain one.
+              </p>
+              <ul>
+                <li>increased content volume</li>
+                <li>short form video</li>
+                <li>audience growth strategy</li>
+                <li>engagement &amp; community</li>
+                <li>monthly reporting call</li>
+              </ul>
+              <Link href="/contact?package=growth" className="zm-start">
+                enquire<span>&#8594;</span>
+              </Link>
+            </div>
+            <div className="zm-panel">
+              <span className="zm-n">03</span>
+              <div className="zm-name">authority</div>
+              <div className="zm-amt">
+                {amount(authority.price)}
+                <small>per month</small>
+              </div>
+              <p className="zm-note">A full content system across channels, positioning included.</p>
+              <ul>
+                <li>full content system</li>
+                <li>positioning &amp; brand voice</li>
+                <li>clipping &amp; repurposing</li>
+                <li>scale strategy</li>
+                <li>priority support</li>
+              </ul>
+              <Link href="/contact?package=authority" className="zm-start">
+                enquire<span>&#8594;</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="zm-rows" style={{ marginTop: "44px" }}>
+            <Link href="/clipping" className="zm-cap">
+              <span className="zm-n">&#43;</span>
+              <h3>clipping</h3>
+              <div className="zm-tags">
+                <span>short form at volume</span>
+                <span>paid on views delivered</span>
+                <span>runs standalone</span>
+              </div>
+              <span className="zm-go">&#8594;</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 websites & shopify */}
+      <section className="zm-sec" id="build">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">03</span>
+            <h2>websites &amp; shopify</h2>
+          </div>
+          <div className="zm-two" style={{ marginBottom: "56px" }}>
+            <p className="zm-disp zm-h-lg">
+              the clicks arrive.
+              <br />
+              the orders do not.
+            </p>
+            <p className="zm-body">
+              Your landing page and your checkout decide what every click you buy is actually
+              worth. Priced per project, because a one page build and a full store are not the
+              same job.
+            </p>
+          </div>
+          <div className="zm-panels zm-p2">
+            <div className="zm-panel">
+              <span className="zm-n">what we build</span>
+              <ul style={{ marginTop: "10px" }}>
+                <li>shopify store build or rebuild</li>
+                <li>landing pages for live campaigns</li>
+                <li>speed, tracking &amp; checkout fixes</li>
+                <li>pixel and events verified end to end</li>
+                <li>full handover, you own the files</li>
               </ul>
             </div>
-          </Reveal>
+            <div className="zm-panel zm-feature">
+              <span className="zm-n">pricing</span>
+              <div className="zm-amt">
+                scoped
+                <small>quoted after we see the brief</small>
+              </div>
+              <p className="zm-note">
+                Send what you need built and what it has to do. You get a written scope and a
+                fixed number back, not an hourly rate.
+              </p>
+              <Link href="/contact?package=website" className="zm-start">
+                tell us what you need<span>&#8594;</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* LeadBridge — Meta Ads add-on */}
-      <section id="leadbridge" className="relative overflow-hidden">
-        <AuroraBlobs />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <Reveal>
-            <p className="font-display text-xs uppercase tracking-[0.15em] text-steel">
-              {LEADBRIDGE.kicker}
+      {/* 04 branding */}
+      <section className="zm-sec" id="brand">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">04</span>
+            <h2>branding</h2>
+          </div>
+          <div className="zm-two" style={{ marginBottom: "56px" }}>
+            <p className="zm-disp zm-h-lg">
+              your brand looks premium.
+              <br />
+              your ads do not.
             </p>
-            <h2 className="headline mt-3 text-3xl text-white md:text-4xl">{LEADBRIDGE.name}</h2>
-            <p className="mt-4 max-w-xl text-sm text-steel md:text-base">{LEADBRIDGE.tagline}</p>
-
-            <div className="mt-6 flex items-baseline gap-3">
-              <p className="font-display text-2xl font-bold text-white">{LEADBRIDGE.price}</p>
-              <p className="text-xs uppercase tracking-[0.1em] text-steel">{LEADBRIDGE.priceNote}</p>
+            <p className="zm-body">
+              A brand system your ads can actually be built on, delivered as files you own
+              outright.
+            </p>
+          </div>
+          <div className="zm-panels zm-p2">
+            <div className="zm-panel zm-feature">
+              <span className="zm-n">starter</span>
+              <div className="zm-amt">
+                {amount(BRANDING_TIER.price)}
+                <small>one off</small>
+              </div>
+              <ul>
+                {BRANDING_TIER.features.map((f) => (
+                  <li key={f}>{f.toLowerCase()}</li>
+                ))}
+              </ul>
+              <Link href="/contact?package=branding" className="zm-start">
+                enquire<span>&#8594;</span>
+              </Link>
             </div>
-          </Reveal>
+            <div className="zm-panel">
+              <span className="zm-n">extended</span>
+              <div className="zm-amt">
+                scoped
+                <small>full identity programme</small>
+              </div>
+              <ul>
+                <li>everything in starter</li>
+                <li>written brand guidelines</li>
+                <li>social and packaging application</li>
+                <li>tone of voice</li>
+              </ul>
+              <Link href="/contact?package=branding-extended" className="zm-start">
+                talk to us<span>&#8594;</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {LEADBRIDGE.stages.map((stage, i) => (
-              <Reveal key={stage.label} delay={i * 70}>
-                <div className="glass-panel tilt-card rounded-[20px] p-6">
-                  <h3 className="font-display text-lg font-semibold text-white">{stage.label}</h3>
-                  <p className="mt-2 text-sm text-steel">{stage.body}</p>
+      {/* 05 leadbridge */}
+      <section className="zm-sec" id="leadbridge">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">05</span>
+            <h2>leadbridge</h2>
+          </div>
+          <div className="zm-two">
+            <div>
+              <p className="zm-disp zm-h-lg" style={{ marginBottom: "30px" }}>
+                ads bring the lead.
+                <br />
+                leadbridge follows it.
+              </p>
+              <p className="zm-body">{LEADBRIDGE.tagline} Runs alongside any package above, or on its own if your leads are already coming in and going nowhere.</p>
+            </div>
+            <div className="zm-panels zm-p2" style={{ gridTemplateColumns: "1fr" }}>
+              <div className="zm-panel zm-feature">
+                <span className="zm-n">add-on</span>
+                <div className="zm-amt">
+                  {amount(LEADBRIDGE.price)}
+                  <small>{LEADBRIDGE.priceNote}</small>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={220}>
-            <p className="mt-8 max-w-2xl text-sm text-steel">{LEADBRIDGE.closingNote}</p>
-            <Link
-              href={inquireHref("Meta Ads — LeadBridge Add-on")}
-              className="font-display mt-8 inline-block rounded-full bg-zafaye-orange px-7 py-3.5 text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
-            >
-              Add LeadBridge
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Social Media Management */}
-      <section id="social" className="bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <Reveal>
-            <SectionHeading
-              tone="light"
-              kicker="Secondary service"
-              title="Social Growth"
-              body="Ongoing management and growth of your social channels, structured across three phases: presence, growth, and authority."
-            />
-          </Reveal>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {SOCIAL_TIERS.map((tier, i) => (
-              <Reveal key={tier.name} delay={i * 60}>
-                <PricingCard tier={tier} serviceLabel="Social Media Management" tone="light" />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Branding */}
-      <section id="branding" className="image-section">
-        <div className="image-section-media">
-          <Image src="/images/branding-bg.jpeg" alt="" fill sizes="100vw" />
-        </div>
-        <div className="image-section-overlay" />
-        <div className="image-section-content mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <Reveal>
-            <SectionHeading
-              kicker="Secondary service"
-              title="Branding"
-              body="A focused identity package: enough to launch or refresh a brand without a six-week engagement."
-            />
-          </Reveal>
-
-          <Reveal delay={80}>
-            <div className="mt-10 max-w-sm">
-              <PricingCard tier={BRANDING_TIER} serviceLabel="Branding" />
+                <ul>
+                  <li>cold &amp; warm lead handling</li>
+                  <li>structured follow up</li>
+                  <li>appointment setting</li>
+                  <li>works with any package</li>
+                </ul>
+                <Link href="/contact?package=leadbridge" className="zm-start">
+                  add leadbridge<span>&#8594;</span>
+                </Link>
+              </div>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* Website / Shopify */}
-      <section id="website" className="bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <Reveal>
-            <SectionHeading
-              tone="light"
-              kicker="Secondary service"
-              title="Website & Shopify"
-              body="No fixed packages here. Every build is scoped and priced around what you actually need, from a simple brochure site to a full Shopify store."
-            />
-
-            <Link
-              href={inquireHref("Website / Shopify Store Creation")}
-              className="font-display mt-8 inline-block rounded-full bg-zafaye-orange px-7 py-3.5 text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90"
-            >
-              Tell us what you need built
-            </Link>
-          </Reveal>
+      <section className="zm-cta">
+        <div className="zm-glow" aria-hidden="true" style={{ top: "50%" }} />
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">06</span>
+            <h2>not sure which tier</h2>
+          </div>
+          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
+            we will tell you
+            <br />
+            which one you need.
+          </p>
+          <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
+            Send your website and what you are spending now. We will recommend a package, or say
+            plainly if none of them fit yet.
+          </p>
+          <Link href="/contact" className="zm-btn">
+            request a free proposal <span>&#8594;</span>
+          </Link>
         </div>
       </section>
     </div>

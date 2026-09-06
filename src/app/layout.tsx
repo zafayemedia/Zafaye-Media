@@ -9,9 +9,8 @@ import { SITE } from "@/lib/constants";
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
-  // 300 is the new brand-black headline weight (REBUILD-PLAN.md); the
-  // heavier weights stay loaded for pages not yet migrated off .headline.
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  // 300 is the brand-black headline weight (REBUILD-PLAN.md).
+  weight: ["300", "400", "500"],
 });
 
 const inter = Inter({
@@ -37,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${archivo.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-ink-navy text-white">
+      <body className="min-h-full flex flex-col bg-black text-white">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

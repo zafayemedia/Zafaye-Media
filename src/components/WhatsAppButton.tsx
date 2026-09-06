@@ -9,7 +9,7 @@ const CLIPPER_MESSAGE =
 
 export default function WhatsAppButton() {
   const pathname = usePathname();
-  const message = pathname?.startsWith("/be-a-clipper") ? CLIPPER_MESSAGE : DEFAULT_MESSAGE;
+  const message = pathname?.startsWith("/clippers") ? CLIPPER_MESSAGE : DEFAULT_MESSAGE;
 
   return (
     <a

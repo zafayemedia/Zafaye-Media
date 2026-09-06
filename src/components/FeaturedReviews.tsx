@@ -5,14 +5,27 @@ async function getFeaturedReviews(): Promise<Review[]> {
 
   const { data, error } = await supabase
     .from("reviews")
+    .select("id, created_at, name, company, rating, comment")
+    .eq("approved", true)
+    .order("rating", { ascending: false })
+    .order("created_at", { ascending: false })
+    .limit(3);
+
+  if (!error && data) return data as Review[];
+
+  // The `company` column is new (brand-black rebuild migration). Until that
+  // migration has been run in Supabase, fall back to the original column
+  // set rather than showing no reviews at all.
+  const fallback = await supabase
+    .from("reviews")
     .select("id, created_at, name, rating, comment")
     .eq("approved", true)
     .order("rating", { ascending: false })
     .order("created_at", { ascending: false })
     .limit(3);
 
-  if (error || !data) return [];
-  return data as Review[];
+  if (fallback.error || !fallback.data) return [];
+  return fallback.data as Review[];
 }
 
 export default async function FeaturedReviews() {
@@ -32,6 +45,7 @@ export default async function FeaturedReviews() {
           <blockquote>{review.comment}</blockquote>
           <div className="zm-who">
             <b>{review.name}</b>
+            {review.company && <small>{review.company}</small>}
           </div>
         </article>
       ))}

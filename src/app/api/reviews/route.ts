@@ -5,7 +5,7 @@ import { sendNotificationEmail } from "@/lib/email";
 export async function POST(request: Request) {
   const body = (await request.json()) as Partial<Review>;
 
-  if (!body.name || !body.comment || !body.rating) {
+  if (!body.name || !body.company || !body.email || !body.comment || !body.rating) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
 
@@ -23,6 +23,9 @@ export async function POST(request: Request) {
   // approved defaults to false in the database — nothing here ever auto-publishes a review.
   const { error } = await supabase.from("reviews").insert({
     name: body.name,
+    company: body.company,
+    email: body.email,
+    service: body.service ?? null,
     rating: body.rating,
     comment: body.comment,
   });
@@ -36,6 +39,8 @@ export async function POST(request: Request) {
     `
       <h2>New review awaiting approval</h2>
       <p><strong>Name:</strong> ${body.name}</p>
+      <p><strong>Company:</strong> ${body.company}</p>
+      <p><strong>Service used:</strong> ${body.service || "Not specified"}</p>
       <p><strong>Rating:</strong> ${body.rating}/5</p>
       <p><strong>Comment:</strong> ${body.comment}</p>
       <p>Approve it from the Supabase dashboard to make it public.</p>

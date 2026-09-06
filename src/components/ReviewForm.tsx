@@ -2,13 +2,29 @@
 
 import { useState, type FormEvent } from "react";
 
+const SERVICE_OPTIONS = [
+  "paid social",
+  "social & content",
+  "clipping",
+  "websites & shopify",
+  "branding",
+  "leadbridge",
+];
+
 export default function ReviewForm() {
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(0);
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (rating < 1) {
+      setErrorMessage("Please choose a rating.");
+      setStatus("error");
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
 
@@ -17,8 +33,11 @@ export default function ReviewForm() {
 
     const payload = {
       name: String(data.get("name") || ""),
+      company: String(data.get("company") || ""),
+      email: String(data.get("email") || ""),
+      service: String(data.get("service") || ""),
       rating,
-      comment: String(data.get("comment") || ""),
+      comment: String(data.get("review") || ""),
     };
 
     try {
@@ -37,7 +56,7 @@ export default function ReviewForm() {
 
       setStatus("done");
       form.reset();
-      setRating(5);
+      setRating(0);
     } catch {
       setErrorMessage("Something went wrong. Please try again.");
       setStatus("error");
@@ -46,78 +65,87 @@ export default function ReviewForm() {
 
   if (status === "done") {
     return (
-      <div className="glass-panel rounded-[20px] p-8">
-        <h3 className="font-display text-xl font-semibold text-white">
-          Thanks for the review.
-        </h3>
-        <p className="mt-2 text-sm text-steel">
-          It&apos;ll appear on this page once it&apos;s been reviewed.
-        </p>
+      <div className="zm-note-box">
+        <p style={{ color: "var(--zm-text)", marginBottom: "6px" }}>Thanks for the review.</p>
+        <p>It stays unpublished until we have verified the working relationship.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label htmlFor="name" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-          Your name
+    <form onSubmit={handleSubmit} className="zm-form">
+      <div className="zm-field">
+        <label htmlFor="r-name">
+          your name <em>*</em>
         </label>
-        <input
-          id="name"
-          name="name"
-          required
-          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
-          placeholder="Name"
-        />
+        <input id="r-name" name="name" required placeholder="full name" />
       </div>
-
-      <div>
-        <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-          Rating
-        </p>
-        <div className="mt-2 flex gap-2">
+      <div className="zm-field">
+        <label htmlFor="r-company">
+          company or brand <em>*</em>
+        </label>
+        <input id="r-company" name="company" required placeholder="business name" />
+      </div>
+      <div className="zm-field">
+        <label htmlFor="r-email">
+          email <em>*</em>
+        </label>
+        <input id="r-email" name="email" type="email" required placeholder="you@company.com" />
+      </div>
+      <div className="zm-field">
+        <label htmlFor="r-service">service used</label>
+        <select id="r-service" name="service" defaultValue="">
+          <option value="">select one</option>
+          {SERVICE_OPTIONS.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="zm-field">
+        <label>
+          rating <em>*</em>
+        </label>
+        <div className="zm-rating-row" role="group" aria-label="rating">
           {[1, 2, 3, 4, 5].map((value) => (
             <button
               key={value}
               type="button"
+              className={value <= rating ? "zm-on" : ""}
               onClick={() => setRating(value)}
               aria-label={`${value} star${value > 1 ? "s" : ""}`}
-              className={`glass-input h-10 w-10 rounded-xl text-sm font-display transition-colors ${
-                value <= rating ? "border-zafaye-orange text-zafaye-orange" : "text-steel"
-              }`}
+              aria-pressed={value <= rating}
             >
-              {value}
+              &#9733;
             </button>
           ))}
         </div>
       </div>
-
-      <div>
-        <label htmlFor="comment" className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-          Your review
+      <div className="zm-field">
+        <label htmlFor="r-msg">
+          your review <em>*</em>
         </label>
         <textarea
-          id="comment"
-          name="comment"
+          id="r-msg"
+          name="review"
           required
-          rows={4}
-          className="glass-input mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-steel/60"
-          placeholder="How was your experience?"
+          placeholder="what we did, what changed, what you would tell someone considering us"
         />
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-zafaye-orange">{errorMessage}</p>
+        <p style={{ color: "var(--zm-orange)", fontSize: "0.85rem", marginTop: "16px" }}>
+          {errorMessage}
+        </p>
       )}
 
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="font-display w-full rounded-full bg-zafaye-orange px-7 py-3.5 text-sm uppercase tracking-[0.1em] text-white transition-opacity hover:opacity-90 disabled:opacity-60"
-      >
-        {status === "loading" ? "Submitting..." : "Submit review"}
-      </button>
+      <div className="zm-form-foot">
+        <p>Your email is used to verify the review only. It is never published.</p>
+        <button type="submit" className="zm-btn" disabled={status === "loading"}>
+          {status === "loading" ? "submitting..." : "submit review"} <span>&#8594;</span>
+        </button>
+      </div>
     </form>
   );
 }
