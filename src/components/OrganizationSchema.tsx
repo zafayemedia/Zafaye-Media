@@ -31,7 +31,7 @@ export default function OrganizationSchema() {
       postalCode: "11733",
       addressCountry: "US",
     },
-    sameAs: ["https://instagram.com/zafaye.media"],
+    sameAs: ["https://instagram.com/zafaye.media", "https://www.facebook.com/zafaye.media"],
   };
 
   return (

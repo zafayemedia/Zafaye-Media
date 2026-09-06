@@ -54,6 +54,10 @@ export default async function ContactPage({
                   <small>instagram</small>
                   <b>@zafaye.media</b>
                 </a>
+                <a href="https://www.facebook.com/zafaye.media" target="_blank" rel="noreferrer">
+                  <small>facebook</small>
+                  <b>@zafaye.media</b>
+                </a>
                 <div>
                   <small>registered</small>
                   <b>

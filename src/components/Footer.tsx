@@ -78,6 +78,11 @@ export default function Footer() {
                   instagram
                 </a>
               </li>
+              <li>
+                <a href="https://www.facebook.com/zafaye.media" target="_blank" rel="noreferrer">
+                  facebook
+                </a>
+              </li>
             </ul>
           </div>
         </div>
