@@ -12,6 +12,12 @@
   --font-body: var(--font-inter);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   background: var(--color-ink-navy);
   color: #ffffff;
@@ -245,6 +251,16 @@ body {
 .tilt-card:focus-within,
 .tilt-card:active {
   transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+/* Accordion (native details/summary) */
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }
 
 /* Marquee */

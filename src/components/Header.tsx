@@ -3,7 +3,7 @@
 import { useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NAV_LINKS } from "@/lib/constants";
+import { CLIPPER_LINK, NAV_LINKS } from "@/lib/constants";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -37,6 +37,12 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href={CLIPPER_LINK.href}
+            className="font-display rounded-full border border-white/20 px-3.5 py-1.5 text-xs uppercase tracking-[0.1em] text-white/80 transition-colors hover:border-white/50 hover:text-white"
+          >
+            {CLIPPER_LINK.label}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -77,6 +83,13 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href={CLIPPER_LINK.href}
+            onClick={() => setOpen(false)}
+            className="font-display mt-1 rounded-2xl border border-white/15 px-4 py-3 text-sm uppercase tracking-[0.1em] text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+          >
+            {CLIPPER_LINK.label}
+          </Link>
         </nav>
       )}
     </header>

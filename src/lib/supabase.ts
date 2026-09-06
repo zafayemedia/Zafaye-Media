@@ -25,6 +25,38 @@ export type Inquiry = {
   notes: string | null;
 };
 
+export type ClipperApplication = {
+  id?: string;
+  created_at?: string;
+  full_name: string;
+  email: string;
+  whatsapp: string;
+  country: string;
+  city: string;
+  age_confirmed: boolean;
+  instagram_url: string | null;
+  tiktok_url: string | null;
+  youtube_url: string | null;
+  facebook_url: string | null;
+  other_platform_url: string | null;
+  main_platform: string;
+  follower_range: string;
+  avg_views_range: string;
+  top_audience_country: string;
+  audience_percent_tier1: string;
+  niche: string;
+  page_age_range: string;
+  edits_own_clips: string;
+  editing_software: string | null;
+  sample_clips: string | null;
+  clips_per_day: string;
+  done_paid_clipping: string;
+  paid_clipping_details: string | null;
+  notes: string | null;
+  accuracy_consent: boolean;
+  organic_consent: boolean;
+};
+
 export type Review = {
   id?: string;
   created_at?: string;

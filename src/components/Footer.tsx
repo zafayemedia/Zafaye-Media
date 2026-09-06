@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SocialLinks from "@/components/SocialLinks";
-import { NAV_LINKS, SITE, whatsappLink } from "@/lib/constants";
+import { CLIPPER_LINK, NAV_LINKS, SITE, whatsappLink } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -21,7 +21,7 @@ export default function Footer() {
             <SocialLinks className="mt-5" />
           </div>
 
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
             <div>
               <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
                 Site
@@ -37,6 +37,19 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
+                Work With Us
+              </p>
+              <ul className="mt-3 space-y-2">
+                <li>
+                  <Link href={CLIPPER_LINK.href} className="text-sm text-white/80 hover:text-white">
+                    {CLIPPER_LINK.label}
+                  </Link>
+                </li>
               </ul>
             </div>
 
