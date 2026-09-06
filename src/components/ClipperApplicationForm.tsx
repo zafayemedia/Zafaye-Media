@@ -165,23 +165,26 @@ function RadioGroup({
   errors: Errors;
 }) {
   const error = errors[name];
+  const groupId = `${name}-legend`;
   return (
-    <fieldset
-      className="zm-field"
-      style={{ gridTemplateColumns: "1fr", border: 0, borderTop: "1px solid var(--zm-line-soft)", padding: "22px 0" }}
-    >
-      <legend
+    // A plain div instead of <fieldset>/<legend>: legends have special,
+    // browser-inconsistent layout rules that ignore grid/flex placement,
+    // which is what was pushing the question and the options apart with a
+    // stray line running through empty space. role="group" + aria-labelledby
+    // keeps the same grouping semantics without that quirk.
+    <div className="zm-field" style={{ gridTemplateColumns: "1fr" }} role="group" aria-labelledby={groupId}>
+      <p
+        id={groupId}
         style={{
-          gridColumn: "1 / -1",
           color: "var(--zm-muted)",
           fontSize: "0.9rem",
           textTransform: "lowercase",
-          marginBottom: "8px",
+          margin: 0,
         }}
       >
         {legend}
-      </legend>
-      <div style={{ display: "grid", gap: "10px" }}>
+      </p>
+      <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
         {options.map((option) => (
           <label
             key={option}
@@ -206,7 +209,7 @@ function RadioGroup({
         ))}
       </div>
       <FieldError id={`${name}-error`} message={error} />
-    </fieldset>
+    </div>
   );
 }
 

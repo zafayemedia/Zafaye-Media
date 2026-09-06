@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FeaturedReviews from "@/components/FeaturedReviews";
+import HighlightStat from "@/components/HighlightStat";
 import Lines from "@/components/motion/Lines";
 import CountUpResult from "@/components/motion/CountUpResult";
 import { SITE } from "@/lib/constants";
@@ -247,7 +248,9 @@ export default function Home() {
                   <span className="zm-who">{item.client}</span>
                   <span className="zm-cat">{FEATURED_CATEGORIES[item.client]}</span>
                 </div>
-                <p>{item.summary}</p>
+                <p>
+                  <HighlightStat text={item.summary} stat={item.stat} />
+                </p>
                 <div className="zm-w-res">
                   <b>
                     <CountUpResult value={item.stat} />
