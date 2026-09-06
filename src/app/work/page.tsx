@@ -54,7 +54,7 @@ export default function WorkPage() {
             </div>
             <div>
               <p className="zm-lbl">result</p>
-              <div className="zm-metric zm-lead">
+              <div className="zm-metric">
                 <b>
                   <CountUpResult value={featured.stat} />
                 </b>
