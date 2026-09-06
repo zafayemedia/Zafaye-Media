@@ -1404,7 +1404,7 @@ a.zm-cap:hover .zm-go {
   line-height: 1;
   display: block;
   font-variant-numeric: tabular-nums;
-  color: var(--zm-text);
+  color: var(--zm-orange);
 }
 .zm-metric span {
   color: var(--zm-dim);
@@ -1464,6 +1464,12 @@ a.zm-cap:hover .zm-go {
   line-height: 1;
   display: block;
   font-variant-numeric: tabular-nums;
+}
+/* ROAS-style multiplier results (8.4x, 7x) get the same size as the
+   featured metric, since they're the same "result we achieved" type of
+   number as everything else on the page — not a smaller, secondary one. */
+.zm-card .zm-res.zm-lead b {
+  font-size: 2.6rem;
 }
 .zm-card .zm-res span {
   color: var(--zm-dim);

@@ -8,15 +8,21 @@ import { CATEGORY, CATEGORY_LABEL, NO_RESULT_CLIENTS, categoryLabel } from "@/li
 
 const FILTERS = ["all", "paid", "social", "build", "brand"] as const;
 
+// A plain ROAS multiplier ("8.4x", "7x") gets the same larger size as the
+// featured metric — it's the same "result we achieved" type of number as
+// everything else, not a smaller, secondary one.
+const ROAS_PATTERN = /^\d+(\.\d+)?x$/i;
+
 function CaseCard({ item, hidden }: { item: CaseStudy; hidden: boolean }) {
   const showResult = !NO_RESULT_CLIENTS.has(item.client);
+  const isRoas = ROAS_PATTERN.test(item.stat);
   return (
     <article className="zm-card" hidden={hidden}>
       <span className="zm-cat">{categoryLabel(item.client)}</span>
       <p className="zm-who">{item.client}</p>
       <p>{showResult ? <HighlightStat text={item.summary} stat={item.stat} /> : item.summary}</p>
       {showResult && (
-        <div className="zm-res">
+        <div className={`zm-res${isRoas ? " zm-lead" : ""}`}>
           <b>
             <CountUpResult value={item.stat} />
           </b>
