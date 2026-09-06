@@ -1,47 +1,27 @@
 "use client";
 
 import { useState } from "react";
+import CountUpResult from "@/components/motion/CountUpResult";
 import { CASE_STUDIES, type CaseStudy } from "@/lib/portfolio-data";
-
-// Categorised for the filter pills below. This is our own organisational
-// tag, not a new claim — every underlying stat/summary is unchanged from
-// /lib/portfolio-data.ts.
-const CATEGORY: Record<string, string> = {
-  "MyLight.pk": "paid",
-  "Thaheem Farms": "paid",
-  "Nakhlistan PK": "social",
-  "Vero Eyewear": "paid",
-  "Indus Gems US": "social",
-  "Zafaye CLO": "brand",
-  "ZAZ Real Estate": "paid",
-  "Shumaila Asad": "paid",
-  "LRN Online Academy": "paid",
-  "Jacquard Gallery": "paid",
-  "Saman Labs": "paid",
-  "Professional Hearing Solutions": "paid",
-  Irhamirhaa: "build",
-  Hyzora: "paid",
-};
-
-const CATEGORY_LABEL: Record<string, string> = {
-  paid: "paid social",
-  social: "social & content",
-  build: "websites & shopify",
-  brand: "branding",
-};
+import { CATEGORY, CATEGORY_LABEL, NO_RESULT_CLIENTS, categoryLabel } from "@/lib/work-category";
 
 const FILTERS = ["all", "paid", "social", "build", "brand"] as const;
 
 function CaseCard({ item, hidden }: { item: CaseStudy; hidden: boolean }) {
+  const showResult = !NO_RESULT_CLIENTS.has(item.client);
   return (
     <article className="zm-card" hidden={hidden}>
-      <span className="zm-cat">{CATEGORY_LABEL[CATEGORY[item.client]]}</span>
+      <span className="zm-cat">{categoryLabel(item.client)}</span>
       <p className="zm-who">{item.client}</p>
       <p>{item.summary}</p>
-      <div className="zm-res">
-        <b>{item.stat}</b>
-        <span>{item.statLabel}</span>
-      </div>
+      {showResult && (
+        <div className="zm-res">
+          <b>
+            <CountUpResult value={item.stat} />
+          </b>
+          <span>{item.statLabel}</span>
+        </div>
+      )}
     </article>
   );
 }
@@ -65,12 +45,10 @@ export default function WorkGrid({ excludeClient }: { excludeClient?: string }) 
           <CaseCard
             key={item.client}
             item={item}
-            hidden={filter !== "all" && CATEGORY[item.client] !== filter}
+            hidden={filter !== "all" && !CATEGORY[item.client].includes(filter)}
           />
         ))}
       </div>
     </>
   );
 }
-
-export { CATEGORY, CATEGORY_LABEL };

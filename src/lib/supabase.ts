@@ -12,8 +12,8 @@ export const supabase = isSupabaseConfigured
 export type Inquiry = {
   id?: string;
   created_at?: string;
-  // "contact" (default) is the general enquiry form; "clipping-brand" is the
-  // /clipping enquiry form. Same table, tagged so the two pipelines don't mix.
+  // "contact" (default) is the general inquiry form; "clipping-brand" is the
+  // /clipping inquiry form. Same table, tagged so the two pipelines don't mix.
   source?: "contact" | "clipping-brand";
   service: string;
   full_name: string;

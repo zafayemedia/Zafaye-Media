@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import OrganizationSchema from "@/components/OrganizationSchema";
+import SectionObserver from "@/components/motion/SectionObserver";
 import { SITE } from "@/lib/constants";
 
 const archivo = Archivo({
@@ -37,6 +39,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${archivo.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black text-white">
+        <OrganizationSchema />
+        <SectionObserver />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

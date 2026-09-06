@@ -59,9 +59,9 @@ export async function POST(request: Request) {
 
   if (source === "clipping-brand") {
     await sendNotificationEmail(
-      `New clipping campaign enquiry: ${inquiry.business_name}`,
+      `New clipping campaign inquiry: ${inquiry.business_name}`,
       `
-        <h2>New clipping enquiry (brand)</h2>
+        <h2>New clipping inquiry (brand)</h2>
         <p><strong>Name:</strong> ${inquiry.full_name}</p>
         <p><strong>Brand / company:</strong> ${inquiry.business_name}</p>
         <p><strong>Email:</strong> ${inquiry.email}</p>

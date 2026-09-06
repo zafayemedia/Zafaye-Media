@@ -50,7 +50,7 @@ export const CLIPPER_STEPS = [
 ];
 
 export const CLIPPER_TRUST_STRIP = [
-  "Registered US company. ZAFAYE LLC, New York.",
+  "Registered US company. Zafaye LLC, New York.",
   "Free to join. We never charge clippers anything.",
   "You keep your page. No account access, ever.",
 ];
@@ -129,7 +129,7 @@ export const CLIPPER_FAQ = [
   {
     question: "Why can't I just do this myself?",
     answer:
-      "Campaign access and verified payout setup, which requires a US or first-world bank account.",
+      "Campaign access comes through relationships we hold directly with brands, and payouts run through infrastructure we manage on our end. You are still paid locally in PKR, the same as any other campaign.",
   },
   {
     question: "How long does the review take?",

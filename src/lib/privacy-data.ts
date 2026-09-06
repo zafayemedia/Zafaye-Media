@@ -11,20 +11,20 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
   {
     heading: "1. Who We Are",
     paragraphs: [
-      "Zafaye Media is a trade name of ZAFAYE LLC, registered in East Setauket, NY 11733. For any question about this policy or your data, contact us at zazufmedia@gmail.com.",
+      "Zafaye Media is a trade name of Zafaye LLC, registered in East Setauket, NY 11733. For any question about this policy or your data, contact us at zazufmedia@gmail.com.",
     ],
   },
   {
     heading: "2. What We Collect",
     bullets: [
-      "For client enquiries: the details you submit through our contact form, including your name, email, phone number, business name, and anything else you choose to include.",
+      "For client inquiries: the details you submit through our contact form, including your name, email, phone number, business name, and anything else you choose to include.",
       "For clipper applications: your name, email, WhatsApp number, country, city, social media profile URLs, page performance information (followers, views, audience data), and the editing and availability details submitted in the application form.",
     ],
   },
   {
     heading: "3. Why We Collect It",
     paragraphs: [
-      "We use this information to respond to enquiries, to review clipper applications, to verify page ownership and audience data, and to administer campaign participation and payment for accepted clippers.",
+      "We use this information to respond to inquiries, to review clipper applications, to verify page ownership and audience data, and to administer campaign participation and payment for accepted clippers.",
     ],
   },
   {
@@ -36,7 +36,7 @@ export const PRIVACY_SECTIONS: PrivacySection[] = [
   {
     heading: "5. How Long We Keep It",
     paragraphs: [
-      "Clipper applications are retained while under review, and for the duration of any working relationship that follows. Client enquiry details are kept for as long as needed to respond to, and where relevant service, the enquiry.",
+      "Clipper applications are retained while under review, and for the duration of any working relationship that follows. Client inquiry details are kept for as long as needed to respond to, and where relevant service, the inquiry.",
     ],
   },
   {

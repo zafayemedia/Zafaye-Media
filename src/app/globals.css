@@ -7,6 +7,14 @@
   --font-body: var(--font-inter);
 }
 
+html {
+  /* The hero/CTA glow and the marquee track are both deliberately wider
+     than the viewport (centered glow, looping strip). Both html and body
+     need overflow-x:hidden — the root scrolling box can still pick up
+     horizontal overflow from a descendant even when only body clips it. */
+  overflow-x: hidden;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -18,6 +26,7 @@ body {
   color: #ffffff;
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   line-height: 1.55;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -41,6 +50,16 @@ body {
   --zm-dim: #5c5c63;
   --zm-orange: #fa7317;
   --zm-maxw: 1240px;
+
+  /* Light-section ground (homepage "ways to start" / "client voices").
+     Black stays the default ground everywhere else. */
+  --zm-mist: #e2e7f0;
+  --zm-mist-line: rgba(5, 11, 31, 0.12);
+  --zm-mist-text: #050b1f;
+  --zm-mist-muted: #41506e;
+  /* The "dark island" card colour used for emphasis on a mist ground
+     (trial tier, review cards) — distinct from --zm-raise/--zm-black. */
+  --zm-ink-navy: #050b1f;
 }
 
 .zm-page {
@@ -248,7 +267,27 @@ a.zm-focus,
 /* sections */
 .zm-sec {
   padding: 120px 0;
-  border-top: 1px solid var(--zm-line-soft);
+  position: relative;
+}
+.zm-sec::before,
+.zm-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--zm-line-soft);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 600ms ease-out;
+}
+.zm-sec.zm-light::before {
+  background: var(--zm-mist-line);
+}
+.zm-sec.zm-inview::before,
+.zm-cta.zm-inview::before {
+  transform: scaleX(1);
 }
 .zm-sec-label {
   display: flex;
@@ -568,6 +607,7 @@ a.zm-cap:hover .zm-go {
   background: var(--zm-dim);
 }
 .zm-tier .zm-flag {
+  display: block;
   color: var(--zm-orange);
   font-size: 0.76rem;
   text-transform: lowercase;
@@ -682,6 +722,7 @@ a.zm-cap:hover .zm-go {
   background: var(--zm-dim);
 }
 .zm-panel .zm-flag {
+  display: block;
   color: var(--zm-orange);
   font-size: 0.76rem;
   text-transform: lowercase;
@@ -958,7 +999,6 @@ a.zm-cap:hover .zm-go {
 /* closing CTA */
 .zm-cta {
   padding: 150px 0 130px;
-  border-top: 1px solid var(--zm-line-soft);
   position: relative;
   text-align: center;
 }
@@ -1545,5 +1585,335 @@ a.zm-cap:hover .zm-go {
   .zm-clause {
     grid-template-columns: 40px 1fr;
     gap: 18px;
+  }
+}
+
+/* ==========================================================================
+   Light sections + motion system (Sept 2026)
+   ========================================================================== */
+
+/* ---- light-ground section (homepage "ways to start" / "client voices") --- */
+
+.zm-sec.zm-light {
+  background: var(--zm-mist);
+  color: var(--zm-mist-text);
+}
+/* Top-of-region and bottom-of-region fades: a light section that is
+   immediately followed by another light section shares one continuous
+   mist ground with no seam between them — only the true outer edges (where
+   mist actually meets black) fade. */
+.zm-sec.zm-light-start {
+  background: linear-gradient(to bottom, var(--zm-black) 0, var(--zm-mist) 120px, var(--zm-mist) 100%);
+}
+.zm-sec.zm-light-end {
+  background: linear-gradient(to bottom, var(--zm-mist) 0, var(--zm-mist) calc(100% - 120px), var(--zm-black) 100%);
+}
+.zm-sec.zm-light-start.zm-light-end {
+  background: linear-gradient(
+    to bottom,
+    var(--zm-black) 0,
+    var(--zm-mist) 120px,
+    var(--zm-mist) calc(100% - 120px),
+    var(--zm-black) 100%
+  );
+}
+.zm-sec.zm-light .zm-sec-label h2,
+.zm-sec.zm-light .zm-body,
+.zm-sec.zm-light .zm-disp {
+  color: var(--zm-mist-text);
+}
+.zm-sec.zm-light .zm-body {
+  color: var(--zm-mist-muted);
+}
+.zm-sec.zm-light .zm-mark-num {
+  color: var(--zm-orange);
+}
+
+/* "ways to start": white cards on mist, trial tier inverted to a dark,
+   slightly larger card as the emphasis device. */
+.zm-sec.zm-light .zm-tiers {
+  background: var(--zm-mist-line);
+}
+.zm-sec.zm-light .zm-tier {
+  background: #ffffff;
+}
+.zm-sec.zm-light .zm-tier .zm-name,
+.zm-sec.zm-light .zm-tier .zm-amt,
+.zm-sec.zm-light .zm-tier .zm-start {
+  color: var(--zm-mist-text);
+}
+.zm-sec.zm-light .zm-tier .zm-note,
+.zm-sec.zm-light .zm-tier li {
+  color: var(--zm-mist-muted);
+}
+.zm-sec.zm-light .zm-tier li::before {
+  background: var(--zm-mist-muted);
+}
+.zm-sec.zm-light .zm-tier .zm-n {
+  color: var(--zm-mist-muted);
+}
+.zm-sec.zm-light .zm-tier.zm-feature {
+  background: var(--zm-ink-navy);
+  position: relative;
+}
+.zm-sec.zm-light .zm-tier.zm-feature .zm-n,
+.zm-sec.zm-light .zm-tier.zm-feature .zm-name,
+.zm-sec.zm-light .zm-tier.zm-feature .zm-amt {
+  color: var(--zm-text);
+}
+.zm-sec.zm-light .zm-tier.zm-feature .zm-amt small {
+  color: var(--zm-dim);
+}
+.zm-sec.zm-light .zm-tier.zm-feature .zm-note,
+.zm-sec.zm-light .zm-tier.zm-feature li {
+  color: var(--zm-muted);
+}
+.zm-sec.zm-light .zm-tier.zm-feature li::before {
+  background: var(--zm-dim);
+}
+.zm-sec.zm-light .zm-tier.zm-feature .zm-flag {
+  color: var(--zm-orange);
+}
+/* Trial's CTA is a solid pill, not the text-link the other two tiers use. */
+.zm-sec.zm-light .zm-tier.zm-feature .zm-start {
+  margin-top: 30px;
+  padding: 14px 28px;
+  border-top: 0;
+  border-radius: 999px;
+  background: var(--zm-orange);
+  color: #0b0500;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 400;
+}
+.zm-sec.zm-light .zm-tier.zm-feature .zm-start:hover {
+  color: #0b0500;
+  transform: translateY(-2px);
+  transition: transform 0.2s;
+}
+@media (min-width: 1001px) {
+  .zm-sec.zm-light .zm-tier.zm-feature {
+    /* Combines with the card-stagger entrance below rather than fighting
+       it: translated down pre-reveal, settling to just the emphasis scale
+       once the section is in view. */
+    transform: scale(1.08) translateY(12px);
+    z-index: 2;
+  }
+  .zm-sec.zm-light.zm-inview .zm-tier.zm-feature {
+    transform: scale(1.08);
+  }
+}
+
+/* "client voices": review cards stay dark islands on the mist ground —
+   the inverse of the tiers above, so the two light sections read
+   differently rather than as one long block. */
+.zm-sec.zm-light .zm-voices {
+  background: var(--zm-mist-line);
+}
+.zm-sec.zm-light .zm-voice {
+  background: var(--zm-ink-navy);
+}
+.zm-sec.zm-light .zm-voice blockquote {
+  color: var(--zm-text);
+}
+.zm-sec.zm-light .zm-voice .zm-who b {
+  color: var(--zm-text);
+}
+.zm-sec.zm-light .zm-voice .zm-who small {
+  color: var(--zm-muted);
+}
+.zm-sec.zm-light .zm-trust .zm-lbl,
+.zm-sec.zm-light .zm-trust .zm-names span {
+  color: var(--zm-mist-muted);
+}
+
+/* ---- motion: reveal-on-scroll (driven by SectionObserver's `zm-inview`) --- */
+
+.zm-sec-label,
+.zm-body,
+.zm-hero-meta,
+.zm-meta,
+.zm-scroll-hint {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms ease-out 150ms, transform 500ms ease-out 150ms;
+}
+.zm-inview .zm-sec-label,
+.zm-inview .zm-body,
+.zm-inview .zm-hero-meta,
+.zm-inview .zm-meta,
+.zm-inview .zm-scroll-hint {
+  opacity: 1;
+  transform: none;
+}
+
+/* Card-grid stagger — any grid item fades and rises, 70ms apart in DOM
+   order. Cap rows ("what we do") are excluded on purpose: they only get
+   the hover hairline below, not a scroll entrance. */
+.zm-tier,
+.zm-panel,
+.zm-w-item,
+.zm-voice,
+.zm-card {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
+.zm-inview .zm-tier,
+.zm-inview .zm-panel,
+.zm-inview .zm-w-item,
+.zm-inview .zm-voice,
+.zm-inview .zm-card {
+  opacity: 1;
+  transform: none;
+}
+.zm-tiers .zm-tier:nth-child(1),
+.zm-panels .zm-panel:nth-child(1),
+.zm-work .zm-w-item:nth-child(1),
+.zm-voices .zm-voice:nth-child(1),
+.zm-grid .zm-card:nth-child(1) {
+  transition-delay: 0ms;
+}
+.zm-tiers .zm-tier:nth-child(2),
+.zm-panels .zm-panel:nth-child(2),
+.zm-work .zm-w-item:nth-child(2),
+.zm-voices .zm-voice:nth-child(2),
+.zm-grid .zm-card:nth-child(2) {
+  transition-delay: 70ms;
+}
+.zm-tiers .zm-tier:nth-child(3),
+.zm-panels .zm-panel:nth-child(3),
+.zm-work .zm-w-item:nth-child(3),
+.zm-voices .zm-voice:nth-child(3),
+.zm-grid .zm-card:nth-child(3) {
+  transition-delay: 140ms;
+}
+.zm-work .zm-w-item:nth-child(4),
+.zm-grid .zm-card:nth-child(4) {
+  transition-delay: 210ms;
+}
+.zm-grid .zm-card:nth-child(5) {
+  transition-delay: 280ms;
+}
+.zm-grid .zm-card:nth-child(6) {
+  transition-delay: 350ms;
+}
+.zm-grid .zm-card:nth-child(7) {
+  transition-delay: 420ms;
+}
+.zm-grid .zm-card:nth-child(8) {
+  transition-delay: 490ms;
+}
+.zm-grid .zm-card:nth-child(9) {
+  transition-delay: 560ms;
+}
+.zm-grid .zm-card:nth-child(10) {
+  transition-delay: 630ms;
+}
+.zm-grid .zm-card:nth-child(11) {
+  transition-delay: 700ms;
+}
+.zm-grid .zm-card:nth-child(12) {
+  transition-delay: 770ms;
+}
+.zm-grid .zm-card:nth-child(13) {
+  transition-delay: 840ms;
+}
+.zm-grid .zm-card:nth-child(14) {
+  transition-delay: 910ms;
+}
+
+/* Headline line reveal (see components/motion/Lines.tsx) */
+.zm-line {
+  display: block;
+  overflow: hidden;
+}
+.zm-line-inner {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zm-line-inner.zm-shown {
+  transform: translateY(0);
+}
+
+/* Row hairline draw-in on hover (homepage "what we do") */
+.zm-cap {
+  position: relative;
+}
+.zm-cap::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--zm-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease-out;
+}
+.zm-cap:hover::after {
+  transform: scaleX(1);
+}
+
+/* Hero glow drift — barely perceptible, always on (not scroll-triggered) */
+.zm-glow {
+  animation: zm-glow-drift 20s ease-in-out infinite alternate;
+}
+@keyframes zm-glow-drift {
+  from {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+  to {
+    transform: translate(-50%, -50%) translate(40px, 0);
+  }
+}
+
+/* Grain overlay — black grounds only. A blend mode does the section-aware
+   work for us: at 3.5% opacity, "overlay" blended against the near-white
+   mist ground is imperceptible, while against black it reads as texture.
+   Pure CSS + an inline SVG filter, no image request. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zm-sec::before,
+  .zm-cta::before {
+    transform: scaleX(1);
+    transition: none;
+  }
+  .zm-sec-label,
+  .zm-body,
+  .zm-hero-meta,
+  .zm-meta,
+  .zm-scroll-hint,
+  .zm-tier,
+  .zm-panel,
+  .zm-w-item,
+  .zm-voice,
+  .zm-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .zm-line-inner {
+    transform: none;
+    transition: none;
+  }
+  .zm-cap::after {
+    transition: none;
+  }
+  .zm-glow {
+    animation: none;
   }
 }

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import WorkGrid, { CATEGORY, CATEGORY_LABEL } from "@/components/WorkGrid";
+import WorkGrid from "@/components/WorkGrid";
+import Lines from "@/components/motion/Lines";
+import CountUpResult from "@/components/motion/CountUpResult";
 import { CASE_STUDIES } from "@/lib/portfolio-data";
+import { categoryLabel } from "@/lib/work-category";
 
 export const metadata: Metadata = {
   title: "Case Studies — Zafaye Media",
@@ -23,11 +26,7 @@ export default function WorkPage() {
             <span>selected work</span>
             <span>verified case studies</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            ask any of them.
-            <br />
-            that is the point.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["ask any of them.", "that is the point."]} />
           <p className="zm-body">
             Every account below is one the client owns and can log into today. Nothing here is a
             number we cannot open inside the platform and show you.
@@ -43,7 +42,7 @@ export default function WorkPage() {
           </div>
           <div className="zm-feat">
             <div>
-              <span className="zm-cat">{CATEGORY_LABEL[CATEGORY[featured.client]]}</span>
+              <span className="zm-cat">{categoryLabel(featured.client)}</span>
               <p className="zm-who">{featured.client}</p>
               <p>{featured.summary}</p>
               <Link href="/contact" className="zm-btn zm-btn-line" style={{ marginTop: "34px" }}>
@@ -53,7 +52,9 @@ export default function WorkPage() {
             <div>
               <p className="zm-lbl">result</p>
               <div className="zm-metric zm-lead">
-                <b>{featured.stat}</b>
+                <b>
+                  <CountUpResult value={featured.stat} />
+                </b>
                 <span>{featured.statLabel}</span>
               </div>
             </div>
@@ -113,11 +114,11 @@ export default function WorkPage() {
             <span className="zm-mark-num">04</span>
             <h2>your turn</h2>
           </div>
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
-            see what we would do
-            <br />
-            with your account.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}
+            lines={["see what we would do", "with your account."]}
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             Send your website and what you are spending now. You get a written plan back, whether
             or not you work with us.

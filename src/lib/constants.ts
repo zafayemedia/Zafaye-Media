@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Zafaye Media",
-  legalName: "ZAFAYE LLC",
+  legalName: "Zafaye LLC",
   legalAddress: "East Setauket, NY 11733",
   tagline: "Turning Complexity to Clarity",
   email: "zazufmedia@gmail.com",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Lines from "@/components/motion/Lines";
 import { TERMS_INTRO, TERMS_LAST_UPDATED, TERMS_SECTIONS } from "@/lib/terms-data";
 
 export const metadata: Metadata = {
@@ -17,11 +18,7 @@ export default function TermsPage() {
             <span>terms &amp; conditions</span>
             <span>general service terms</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            the rules,
-            <br />
-            written plainly.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["the rules,", "written plainly."]} />
           <p className="zm-body">{TERMS_INTRO}</p>
         </div>
       </section>
@@ -60,11 +57,11 @@ export default function TermsPage() {
             <span className="zm-mark-num">02</span>
             <h2>questions on any of this</h2>
           </div>
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.2rem,6vw,4.6rem)" }}>
-            ask before
-            <br />
-            you sign.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.2rem,6vw,4.6rem)" }}
+            lines={["ask before", "you sign."]}
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             If a clause is unclear, we would rather explain it now than argue about it later.
           </p>

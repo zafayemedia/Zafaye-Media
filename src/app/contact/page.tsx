@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import InquiryForm from "@/components/InquiryForm";
+import Lines from "@/components/motion/Lines";
 import { SITE, whatsappLink } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact — Zafaye Media",
-  description: "Send a brief to Zafaye Media. WhatsApp, email, or the enquiry form. Replies within one working day.",
+  description: "Send a brief to Zafaye Media. WhatsApp, email, or the inquiry form. Replies within one working day.",
 };
 
 export default async function ContactPage({
@@ -24,11 +25,7 @@ export default async function ContactPage({
             <span>contact</span>
             <span>replies within 1 working day</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            got a brief?
-            <br />
-            let&apos;s talk.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["got a brief?", "let's talk."]} />
           <p className="zm-body">
             Send what you sell and what you are spending now. You get a written plan and a
             recommended package back, whether or not you end up working with us.

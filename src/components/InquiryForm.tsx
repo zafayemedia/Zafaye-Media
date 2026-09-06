@@ -206,7 +206,7 @@ export default function InquiryForm({ defaultPackage = "" }: { defaultPackage?: 
       )}
 
       <div className="zm-form-foot">
-        <p>Your details are used to reply to this enquiry only. We do not add you to a list.</p>
+        <p>Your details are used to reply to this inquiry only. We do not add you to a list.</p>
         <button type="submit" className="zm-btn" disabled={status === "loading"}>
           {status === "loading" ? "sending..." : "send brief"} <span>&#8594;</span>
         </button>

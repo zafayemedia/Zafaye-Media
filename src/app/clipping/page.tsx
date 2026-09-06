@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ClippingEnquiryForm from "@/components/ClippingEnquiryForm";
+import Lines from "@/components/motion/Lines";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -21,10 +22,7 @@ export default function ClippingPage() {
             <span>clipping — for brands</span>
             <span>paid on views delivered</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            one video.
-            <br />a hundred places.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["one video.", "a hundred places."]} />
           <p className="zm-body" style={{ marginTop: "36px", maxWidth: "52ch" }}>
             Clipping turns the content you already have into short vertical videos, posted at
             volume across a network of real pages. You pay for the views that actually land, not
@@ -56,11 +54,11 @@ export default function ClippingPage() {
           </div>
           <div className="zm-two">
             <div>
-              <p className="zm-disp zm-h-lg" style={{ marginBottom: "32px" }}>
-                you already made
-                <br />
-                the content.
-              </p>
+              <Lines
+                className="zm-disp zm-h-lg"
+                style={{ marginBottom: "32px" }}
+                lines={["you already made", "the content."]}
+              />
               <p className="zm-body">
                 Most brands sit on hours of usable footage. A podcast, a launch video, a founder
                 talking, an event, a stream, a pile of UGC. It gets posted once and then it is
@@ -109,11 +107,11 @@ export default function ClippingPage() {
             <span className="zm-mark-num">02</span>
             <h2>why it works</h2>
           </div>
-          <p className="zm-disp zm-h-lg" style={{ marginBottom: "56px" }}>
-            reach you cannot buy
-            <br />
-            and cannot fake.
-          </p>
+          <Lines
+            className="zm-disp zm-h-lg"
+            style={{ marginBottom: "56px" }}
+            lines={["reach you cannot buy", "and cannot fake."]}
+          />
           <div className="zm-steps">
             <div className="zm-step">
               <span className="zm-n">01</span>
@@ -277,11 +275,11 @@ export default function ClippingPage() {
           </div>
           <div className="zm-two">
             <div>
-              <p className="zm-disp zm-h-lg" style={{ marginBottom: "30px" }}>
-                tell us what
-                <br />
-                you have to work with.
-              </p>
+              <Lines
+                className="zm-disp zm-h-lg"
+                style={{ marginBottom: "30px" }}
+                lines={["tell us what", "you have to work with."]}
+              />
               <p className="zm-body">
                 Send the footage you already have and the audience you want in front of. We will
                 come back with a niche, a view target and a number, before you commit to anything.
@@ -308,11 +306,11 @@ export default function ClippingPage() {
             <span className="zm-mark-num">07</span>
             <h2>run a page yourself</h2>
           </div>
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
-            there is a
-            <br />
-            different door for you.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}
+            lines={["there is a", "different door for you."]}
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             If you own a page and want to get paid for posting clips rather than hiring us to run
             a campaign, start here instead.

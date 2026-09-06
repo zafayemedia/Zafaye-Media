@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import FeaturedReviews from "@/components/FeaturedReviews";
+import Lines from "@/components/motion/Lines";
+import CountUpResult from "@/components/motion/CountUpResult";
+import { SITE } from "@/lib/constants";
 import { CASE_STUDIES, MARQUEE_ONLY_NAMES } from "@/lib/portfolio-data";
 import { META_ADS_TIERS, SOCIAL_TIERS, BRANDING_TIER, LEADBRIDGE } from "@/lib/services-data";
+
+export const metadata: Metadata = {
+  title: `${SITE.name} — Digital Marketing Agency, Pakistan & US`,
+  description: `${SITE.tagline}. Paid social, organic content, clipping campaigns, websites and Shopify builds, and branding for businesses in Pakistan and the US.`,
+};
 
 // Without this, Next.js prerenders the homepage once at build time and the
 // client-voices section never picks up newly approved reviews.
@@ -107,11 +116,16 @@ export default function Home() {
             <span>digital marketing agency</span>
             <span>pakistan &middot; new york</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            paid, organic <em>&amp;</em>
-            <br />
-            everything between
-          </h1>
+          <Lines
+            as="h1"
+            className="zm-disp zm-h-xl"
+            lines={[
+              <>
+                paid, organic <em>&amp;</em>
+              </>,
+              "everything between",
+            ]}
+          />
           <div className="zm-hero-foot">
             <p className="zm-body">
               We run the ads, the content, the clipping, the store and the brand behind them. One
@@ -131,12 +145,12 @@ export default function Home() {
           </div>
           <div className="zm-intro-grid">
             <div>
-              <p className="zm-disp zm-h-lg" style={{ marginBottom: "34px" }}>
-                most agencies go quiet
-                <br />
-                when something breaks.
-              </p>
-              <p className="zm-body">
+              <Lines
+                className="zm-disp zm-h-lg"
+                lines={["most agencies go quiet", "when something breaks."]}
+                as="p"
+              />
+              <p className="zm-body" style={{ marginTop: "34px" }}>
                 Zafaye Media is a digital marketing agency working with brands in Pakistan and the
                 US. We compete on the one thing that cannot be faked: you can check our work
                 yourself, any day, inside your own accounts.
@@ -189,11 +203,7 @@ export default function Home() {
             <h2>what we do</h2>
           </div>
           <div className="zm-cap-head">
-            <p className="zm-disp zm-h-lg">
-              six disciplines,
-              <br />
-              one team.
-            </p>
+            <Lines className="zm-disp zm-h-lg" lines={["six disciplines,", "one team."]} />
             <div className="zm-side">
               not six agencies
               <br />
@@ -223,11 +233,12 @@ export default function Home() {
             <span className="zm-mark-num">03</span>
             <h2>selected work</h2>
           </div>
-          <p className="zm-disp zm-h-lg" style={{ marginBottom: "56px" }}>
-            the numbers,
-            <br />
-            not the adjectives.
-          </p>
+          <Lines
+            className="zm-disp zm-h-lg"
+            lines={["the numbers,", "not the adjectives."]}
+            as="p"
+          />
+          <div style={{ marginBottom: "56px" }} />
 
           <div className="zm-work">
             {FEATURED_WORK.map((item) => (
@@ -238,7 +249,9 @@ export default function Home() {
                 </div>
                 <p>{item.summary}</p>
                 <div className="zm-w-res">
-                  <b>{item.stat}</b>
+                  <b>
+                    <CountUpResult value={item.stat} />
+                  </b>
                   <span>{item.statLabel}</span>
                 </div>
               </article>
@@ -253,18 +266,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 04 ways to start */}
-      <section className="zm-sec">
+      {/* 04 ways to start — light section, trial tier inverted for emphasis */}
+      <section className="zm-sec zm-light zm-light-start">
         <div className="zm-wrap">
           <div className="zm-sec-label">
             <span className="zm-mark-num">04</span>
             <h2>ways to start</h2>
           </div>
-          <p className="zm-disp zm-h-lg" style={{ marginBottom: "56px" }}>
-            three ways in.
-            <br />
-            no setup fees.
-          </p>
+          <Lines
+            className="zm-disp zm-h-lg"
+            lines={["three ways in.", "no setup fees."]}
+            as="p"
+          />
+          <div style={{ marginBottom: "56px" }} />
 
           <div className="zm-tiers">
             <div className="zm-tier zm-feature">
@@ -281,7 +295,7 @@ export default function Home() {
                 <li>1 campaign</li>
                 <li>up to 4 ad creatives</li>
                 <li>pixel and account setup</li>
-                <li>weekly optimization</li>
+                <li>weekly reporting</li>
               </ul>
               <span className="zm-flag">start here</span>
               <Link href="/contact?package=trial" className="zm-start">
@@ -336,8 +350,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 05 client voices */}
-      <section className="zm-sec">
+      {/* 05 client voices — light section, review cards stay dark islands */}
+      <section className="zm-sec zm-light zm-light-end">
         <div className="zm-wrap">
           <div className="zm-sec-label">
             <span className="zm-mark-num">05</span>
@@ -366,9 +380,8 @@ export default function Home() {
             <span className="zm-mark-num">06</span>
             <h2>how it runs</h2>
           </div>
-          <p className="zm-disp zm-h-lg" style={{ marginBottom: "56px" }}>
-            we do not blindfire.
-          </p>
+          <Lines className="zm-disp zm-h-lg" lines={["we do not blindfire."]} as="p" />
+          <div style={{ marginBottom: "56px" }} />
           <div className="zm-steps">
             {PROCESS_STEPS.map((step) => (
               <div key={step.n} className="zm-step">
@@ -392,11 +405,12 @@ export default function Home() {
           <a href="mailto:zazufmedia@gmail.com" className="zm-mail">
             zazufmedia@gmail.com
           </a>
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
-            got a brief?
-            <br />
-            let&apos;s talk.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}
+            lines={["got a brief?", "let's talk."]}
+            as="p"
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             Send your website and what you are spending now. You get a written plan back, whether
             or not you end up working with us.

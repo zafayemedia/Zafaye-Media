@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Lines from "@/components/motion/Lines";
 import {
   BRANDING_TIER,
   LEADBRIDGE,
@@ -31,11 +32,7 @@ export default function ServicesPage() {
             <span>services &amp; pricing</span>
             <span>all figures in pkr</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            five disciplines,
-            <br />
-            one team.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["six disciplines,", "one team."]} />
           <p className="zm-body">
             Every price on this page is the price. No setup fee appears at signature, and nothing
             is quoted per hour. Pick the tier that matches where the business actually is, or ask
@@ -52,10 +49,7 @@ export default function ServicesPage() {
             <h2>paid social</h2>
           </div>
           <div className="zm-two" style={{ marginBottom: "56px" }}>
-            <p className="zm-disp zm-h-lg">
-              more budget will not fix
-              <br />a broken campaign.
-            </p>
+            <Lines className="zm-disp zm-h-lg" lines={["more budget will not fix", "a broken campaign."]} />
             <p className="zm-body">
               Structure, targeting, creative and weekly optimization. The ad account stays in your
               name from day one and never moves.
@@ -95,7 +89,7 @@ export default function ServicesPage() {
                 <li>monthly report</li>
               </ul>
               <Link href="/contact?package=essential" className="zm-start">
-                enquire<span>&#8594;</span>
+                inquire<span>&#8594;</span>
               </Link>
             </div>
             <div className="zm-panel">
@@ -112,7 +106,7 @@ export default function ServicesPage() {
                 <li>priority support</li>
               </ul>
               <Link href="/contact?package=advanced" className="zm-start">
-                enquire<span>&#8594;</span>
+                inquire<span>&#8594;</span>
               </Link>
             </div>
             <div className="zm-panel">
@@ -129,7 +123,7 @@ export default function ServicesPage() {
                 <li>dedicated account manager</li>
               </ul>
               <Link href="/contact?package=dominate" className="zm-start">
-                enquire<span>&#8594;</span>
+                inquire<span>&#8594;</span>
               </Link>
             </div>
             <div className="zm-panel">
@@ -171,11 +165,7 @@ export default function ServicesPage() {
             <h2>social &amp; content</h2>
           </div>
           <div className="zm-two" style={{ marginBottom: "56px" }}>
-            <p className="zm-disp zm-h-lg">
-              built in phases.
-              <br />
-              presence, growth, authority.
-            </p>
+            <Lines className="zm-disp zm-h-lg" lines={["built in phases.", "presence, growth, authority."]} />
             <p className="zm-body">
               Content, posting and community handled end to end. Short form and clipping sit
               inside this line, and can also run on their own.
@@ -200,7 +190,7 @@ export default function ServicesPage() {
                 <li>monthly summary</li>
               </ul>
               <Link href="/contact?package=presence" className="zm-start">
-                enquire<span>&#8594;</span>
+                inquire<span>&#8594;</span>
               </Link>
             </div>
             <div className="zm-panel zm-feature">
@@ -221,7 +211,7 @@ export default function ServicesPage() {
                 <li>monthly reporting call</li>
               </ul>
               <Link href="/contact?package=growth" className="zm-start">
-                enquire<span>&#8594;</span>
+                inquire<span>&#8594;</span>
               </Link>
             </div>
             <div className="zm-panel">
@@ -240,7 +230,7 @@ export default function ServicesPage() {
                 <li>priority support</li>
               </ul>
               <Link href="/contact?package=authority" className="zm-start">
-                enquire<span>&#8594;</span>
+                inquire<span>&#8594;</span>
               </Link>
             </div>
           </div>
@@ -268,11 +258,7 @@ export default function ServicesPage() {
             <h2>websites &amp; shopify</h2>
           </div>
           <div className="zm-two" style={{ marginBottom: "56px" }}>
-            <p className="zm-disp zm-h-lg">
-              the clicks arrive.
-              <br />
-              the orders do not.
-            </p>
+            <Lines className="zm-disp zm-h-lg" lines={["the clicks arrive.", "the orders do not."]} />
             <p className="zm-body">
               Your landing page and your checkout decide what every click you buy is actually
               worth. Priced per project, because a one page build and a full store are not the
@@ -316,11 +302,7 @@ export default function ServicesPage() {
             <h2>branding</h2>
           </div>
           <div className="zm-two" style={{ marginBottom: "56px" }}>
-            <p className="zm-disp zm-h-lg">
-              your brand looks premium.
-              <br />
-              your ads do not.
-            </p>
+            <Lines className="zm-disp zm-h-lg" lines={["your brand looks premium.", "your ads do not."]} />
             <p className="zm-body">
               A brand system your ads can actually be built on, delivered as files you own
               outright.
@@ -339,20 +321,19 @@ export default function ServicesPage() {
                 ))}
               </ul>
               <Link href="/contact?package=branding" className="zm-start">
-                enquire<span>&#8594;</span>
+                inquire<span>&#8594;</span>
               </Link>
             </div>
             <div className="zm-panel">
               <span className="zm-n">extended</span>
               <div className="zm-amt">
                 scoped
-                <small>full identity programme</small>
+                <small>full identity program</small>
               </div>
               <ul>
-                <li>everything in starter</li>
-                <li>written brand guidelines</li>
+                <li>full written brand guidelines</li>
+                <li>brand voice and messaging</li>
                 <li>social and packaging application</li>
-                <li>tone of voice</li>
               </ul>
               <Link href="/contact?package=branding-extended" className="zm-start">
                 talk to us<span>&#8594;</span>
@@ -371,11 +352,11 @@ export default function ServicesPage() {
           </div>
           <div className="zm-two">
             <div>
-              <p className="zm-disp zm-h-lg" style={{ marginBottom: "30px" }}>
-                ads bring the lead.
-                <br />
-                leadbridge follows it.
-              </p>
+              <Lines
+                className="zm-disp zm-h-lg"
+                style={{ marginBottom: "30px" }}
+                lines={["ads bring the lead.", "leadbridge follows it."]}
+              />
               <p className="zm-body">{LEADBRIDGE.tagline} Runs alongside any package above, or on its own if your leads are already coming in and going nowhere.</p>
             </div>
             <div className="zm-panels zm-p2" style={{ gridTemplateColumns: "1fr" }}>
@@ -400,18 +381,37 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* 06 creative standard */}
+      <section className="zm-sec" id="standard">
+        <div className="zm-wrap">
+          <div className="zm-sec-label">
+            <span className="zm-mark-num">06</span>
+            <h2>creative standard</h2>
+          </div>
+          <p className="zm-body" style={{ maxWidth: "62ch" }}>
+            Every account gets the same creative standard: modest, halal, consistent with Islamic
+            principles. This is a positioning choice, not a footnote, and you can read the full
+            policy in our{" "}
+            <Link href="/terms" style={{ color: "var(--zm-orange)" }}>
+              terms
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
       <section className="zm-cta">
         <div className="zm-glow" aria-hidden="true" style={{ top: "50%" }} />
         <div className="zm-wrap">
           <div className="zm-sec-label">
-            <span className="zm-mark-num">06</span>
+            <span className="zm-mark-num">07</span>
             <h2>not sure which tier</h2>
           </div>
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
-            we will tell you
-            <br />
-            which one you need.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}
+            lines={["we will tell you", "which one you need."]}
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             Send your website and what you are spending now. We will recommend a package, or say
             plainly if none of them fit yet.

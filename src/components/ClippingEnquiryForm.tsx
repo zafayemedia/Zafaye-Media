@@ -160,7 +160,7 @@ export default function ClippingEnquiryForm() {
           are agreed in writing.
         </p>
         <button type="submit" className="zm-btn" disabled={status === "loading"}>
-          {status === "loading" ? "sending..." : "send enquiry"} <span>&#8594;</span>
+          {status === "loading" ? "sending..." : "send inquiry"} <span>&#8594;</span>
         </button>
       </div>
     </form>

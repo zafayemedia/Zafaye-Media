@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Lines from "@/components/motion/Lines";
 import { PRIVACY_INTRO, PRIVACY_LAST_UPDATED, PRIVACY_SECTIONS } from "@/lib/privacy-data";
 
 export const metadata: Metadata = {
@@ -17,11 +18,7 @@ export default function PrivacyPage() {
             <span>privacy policy</span>
             <span>clients and clipper applicants</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            your data,
-            <br />
-            handled plainly.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["your data,", "handled plainly."]} />
           <p className="zm-body">{PRIVACY_INTRO}</p>
         </div>
       </section>
@@ -60,11 +57,11 @@ export default function PrivacyPage() {
             <span className="zm-mark-num">02</span>
             <h2>questions on your data</h2>
           </div>
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.2rem,6vw,4.6rem)" }}>
-            ask, correct
-            <br />
-            or delete it.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.2rem,6vw,4.6rem)" }}
+            lines={["ask, correct", "or delete it."]}
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             Email us any time and we will act on it.
           </p>

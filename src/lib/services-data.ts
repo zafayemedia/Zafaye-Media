@@ -120,9 +120,9 @@ export const LEADBRIDGE = {
 export const META_ADS_INCLUDED = [
   "Business Portfolio setup guidance",
   "Ad account setup and optimization, using your existing account or setting one up for you",
-  "Access sharing guidance",
+  "Guidance on sharing account access safely",
   "Meta Pixel integration and setup",
-  "Business growth consultation and offer buildup guidance",
+  "Business growth consultation and offer development",
   "Landing page and website audit and correction guidance",
   "Lead closing and appointment-setting guidance",
 ];
@@ -180,9 +180,8 @@ export const BRANDING_TIER: Tier = {
   price: "PKR 10,000",
   features: [
     "Logo system: primary and secondary marks",
-    "Full colour palette with usage rules",
+    "Colour palette",
     "Typography system, up to 3 typefaces",
-    "Brand voice and messaging guidelines",
-    "Clear space, minimum size, and usage rules",
+    "Basic usage rules: clear space and minimum size",
   ],
 };

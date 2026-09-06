@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ReviewForm from "@/components/ReviewForm";
+import Lines from "@/components/motion/Lines";
 import { isSupabaseConfigured, supabase, type Review } from "@/lib/supabase";
 
 export const metadata: Metadata = {
@@ -47,11 +48,7 @@ export default async function ReviewsPage() {
             <span>reviews</span>
             <span>published after approval</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            checked,
-            <br />
-            not claimed.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["checked,", "not claimed."]} />
           <p className="zm-body">
             Every review below was left by a client we have actually worked with. Nothing is
             published until we have confirmed it, and nothing is edited once it is.
@@ -97,14 +94,14 @@ export default async function ReviewsPage() {
           </div>
           <div className="zm-two">
             <div>
-              <p className="zm-disp zm-h-lg" style={{ marginBottom: "30px" }}>
-                worked with us?
-                <br />
-                say so honestly.
-              </p>
+              <Lines
+                className="zm-disp zm-h-lg"
+                style={{ marginBottom: "30px" }}
+                lines={["worked with us?", "say so honestly."]}
+              />
               <p className="zm-body">
-                Reviews are read before they go up, and we publish the critical ones too. What we
-                will not publish is anything from someone we have never worked with.
+                Reviews are read before they go up. What we will not publish is anything from
+                someone we have never worked with.
               </p>
               <div className="zm-note-box">
                 <p>
@@ -125,11 +122,11 @@ export default async function ReviewsPage() {
             <span className="zm-mark-num">03</span>
             <h2>not a client yet</h2>
           </div>
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
-            read them,
-            <br />
-            then check us.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}
+            lines={["read them,", "then check us."]}
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             Ask for the client behind any review here and we will connect you, with their
             permission.

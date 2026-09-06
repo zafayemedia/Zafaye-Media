@@ -11,7 +11,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
   {
     heading: "1. Shariah Compliance Policy",
     paragraphs: [
-      "The Agency does not market, use, promote, or otherwise engage in any activity that goes against Shariah, including but not limited to the use of uncovered women, haram products, haram songs, or anything else inconsistent with Islamic principles. Creative work may feature male individuals, or female individuals dressed in accordance with Islamic parda (modest covering).",
+      "The Agency does not market, use, promote, or otherwise engage in any activity that goes against Shariah, including but not limited to the use of women not dressed in accordance with modest covering, haram products, haram songs, or anything else inconsistent with Islamic principles. Creative work may feature male individuals, or female individuals dressed in accordance with Islamic parda (modest covering).",
       "This policy governs the creative direction taken at every stage of an engagement and is applied consistently across all client accounts. The Agency reserves the right to decline any request, at any point during an engagement, that conflicts with this policy, and the Client holds no right to compel the Agency to act against it.",
     ],
   },

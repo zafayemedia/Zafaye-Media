@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ClipperApplicationForm from "@/components/ClipperApplicationForm";
+import Lines from "@/components/motion/Lines";
 import { CLIPPER_FAQ } from "@/lib/clipper-data";
 
 export const metadata: Metadata = {
@@ -17,11 +18,7 @@ export default function ClippersPage() {
             <span>clipping — for page owners</span>
             <span>paid on views delivered</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            you already run
-            <br />
-            the page.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["you already run", "the page."]} />
           <p className="zm-body" style={{ marginTop: "36px", maxWidth: "52ch" }}>
             If you post football, gaming, motivation or anything with a real audience, you can get
             paid for it. We bring the campaigns and the footage. You edit, you post from your own
@@ -41,11 +38,7 @@ export default function ClippersPage() {
             <h2>how you get paid</h2>
           </div>
           <div className="zm-two" style={{ marginBottom: "52px" }}>
-            <p className="zm-disp zm-h-lg">
-              per 1,000 views.
-              <br />
-              nothing else.
-            </p>
+            <Lines className="zm-disp zm-h-lg" lines={["per 1,000 views.", "nothing else."]} />
             <p className="zm-body">
               No fixed fee per post, because a post nobody watches is worth nothing to anyone. You
               are paid on what your clips actually deliver, so a page that performs earns more
@@ -102,12 +95,15 @@ export default function ClippersPage() {
             <div className="zm-step">
               <span className="zm-n">03</span>
               <h3>edit &amp; post</h3>
-              <p>You cut the clips yourself and post them from your own page. You keep full control of the account, always.</p>
+              <p>
+                You cut the clips yourself and post them from your own page. Every clip is
+                reviewed before it counts. An unapproved clip earns nothing.
+              </p>
             </div>
             <div className="zm-step">
               <span className="zm-n">04</span>
               <h3>get paid</h3>
-              <p>Views are counted per post. You are paid on views delivered, in PKR, on the agreed schedule.</p>
+              <p>After a campaign ends, on approved clips only. Views are counted per post, and you are paid in PKR.</p>
             </div>
           </div>
         </div>
@@ -177,11 +173,11 @@ export default function ClippersPage() {
           </div>
           <div className="zm-two">
             <div>
-              <p className="zm-disp zm-h-lg" style={{ marginBottom: "30px" }}>
-                send your page.
-                <br />
-                we will take a look.
-              </p>
+              <Lines
+                className="zm-disp zm-h-lg"
+                style={{ marginBottom: "30px" }}
+                lines={["send your page.", "we will take a look."]}
+              />
               <p className="zm-body">
                 Applications are reviewed manually. If your page fits an active campaign we will
                 come back to you with the brief and the rate. If it does not fit yet, we will tell
@@ -204,11 +200,11 @@ export default function ClippersPage() {
       <section className="zm-cta">
         <div className="zm-glow" aria-hidden="true" style={{ top: "50%" }} />
         <div className="zm-wrap">
-          <p className="zm-disp zm-h-xl" style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}>
-            the page is already
-            <br />
-            doing the work.
-          </p>
+          <Lines
+            className="zm-disp zm-h-xl"
+            style={{ fontSize: "clamp(2.4rem,7vw,5.4rem)" }}
+            lines={["the page is already", "doing the work."]}
+          />
           <p className="zm-body" style={{ maxWidth: "48ch", margin: "30px auto 0" }}>
             Start earning from it.
           </p>

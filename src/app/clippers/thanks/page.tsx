@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Lines from "@/components/motion/Lines";
 import { CLIPPER_WHAT_HAPPENS_NEXT, CLIPPER_WHAT_HAPPENS_NEXT_NOTE } from "@/lib/clipper-data";
 
 export const metadata: Metadata = {
@@ -17,11 +18,7 @@ export default function ClipperThanksPage() {
             <span>application received</span>
             <span>reviewed within 24 to 48 hours</span>
           </div>
-          <h1 className="zm-disp zm-h-xl">
-            you&apos;re in
-            <br />
-            the queue.
-          </h1>
+          <Lines as="h1" className="zm-disp zm-h-xl" lines={["you're in", "the queue."]} />
           <p className="zm-body">
             Our team reviews every application and responds within 24 to 48 hours, on the email or
             WhatsApp number you gave us.
