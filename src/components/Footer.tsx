@@ -1,109 +1,91 @@
-import Image from "next/image";
 import Link from "next/link";
-import SocialLinks from "@/components/SocialLinks";
-import { CLIPPER_LINK, NAV_LINKS, SITE, whatsappLink } from "@/lib/constants";
+import { CLIPPER_LINK, SITE, whatsappLink } from "@/lib/constants";
 
 export default function Footer() {
-  return (
-    <footer className="relative overflow-hidden border-t border-white/10">
-      <div className="absolute inset-0 z-0">
-        <Image src="/images/footer-cta-banner.jpeg" alt="" fill sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-ink-navy/85" />
-      </div>
+  const year = new Date().getFullYear();
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
-          <div className="max-w-sm">
-            <p className="font-display text-lg tracking-[0.15em] text-white">
-              ZAFAYE MEDIA
+  return (
+    <footer className="zm-footer">
+      <div className="zm-wrap">
+        <div className="zm-f-grid">
+          <div className="zm-f-brand">
+            <span className="zm-brand">
+              zafaye media<i>.</i>
+            </span>
+            <p className="zm-body">
+              {SITE.legalName}, {SITE.legalAddress}. Working with brands across Pakistan and the US.
             </p>
-            <p className="mt-3 text-sm text-steel">{SITE.tagline}</p>
-            <SocialLinks className="mt-5" />
           </div>
 
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
-            <div>
-              <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-                Site
-              </p>
-              <ul className="mt-3 space-y-2">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-white/80 hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div>
+            <h4>services</h4>
+            <ul>
+              <li>
+                <Link href="/services#paid">paid social</Link>
+              </li>
+              <li>
+                <Link href="/services#social">social &amp; content</Link>
+              </li>
+              <li>
+                <Link href="/clipping">clipping</Link>
+              </li>
+              <li>
+                <Link href="/services#build">websites &amp; shopify</Link>
+              </li>
+              <li>
+                <Link href="/services#brand">branding</Link>
+              </li>
+              <li>
+                <Link href="/services#leadbridge">leadbridge</Link>
+              </li>
+            </ul>
+          </div>
 
-            <div>
-              <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-                Work With Us
-              </p>
-              <ul className="mt-3 space-y-2">
-                <li>
-                  <Link href={CLIPPER_LINK.href} className="text-sm text-white/80 hover:text-white">
-                    {CLIPPER_LINK.label}
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div>
+            <h4>company</h4>
+            <ul>
+              <li>
+                <Link href="/work">case studies</Link>
+              </li>
+              <li>
+                <Link href="/reviews">reviews</Link>
+              </li>
+              <li>
+                <Link href={CLIPPER_LINK.href}>{CLIPPER_LINK.label}</Link>
+              </li>
+              <li>
+                <Link href="/contact">contact</Link>
+              </li>
+              <li>
+                <Link href="/terms">terms</Link>
+              </li>
+            </ul>
+          </div>
 
-            <div>
-              <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-                Contact
-              </p>
-              <ul className="mt-3 space-y-2 text-sm text-white/80">
-                <li>
-                  <a href={`mailto:${SITE.email}`} className="hover:text-white">
-                    {SITE.email}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={whatsappLink()}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-white"
-                  >
-                    {SITE.phoneDisplay} (WhatsApp)
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <p className="font-display text-xs uppercase tracking-[0.1em] text-steel">
-                Legal
-              </p>
-              <ul className="mt-3 space-y-2">
-                <li>
-                  <Link href="/terms" className="text-sm text-white/80 hover:text-white">
-                    Terms &amp; Conditions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy" className="text-sm text-white/80 hover:text-white">
-                    Privacy Policy
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div>
+            <h4>contact</h4>
+            <ul>
+              <li>
+                <a href={whatsappLink()} target="_blank" rel="noreferrer">
+                  whatsapp {SITE.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+              </li>
+              <li>
+                <a href="https://instagram.com/zafaye.media" target="_blank" rel="noreferrer">
+                  instagram
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-xs text-steel">
-          <p>
-            {SITE.name} is a trade name of {SITE.legalName}, registered in{" "}
-            {SITE.legalAddress}.
-          </p>
-          <p className="mt-1">
-            © {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
-          </p>
+        <div className="zm-f-bottom">
+          <span>© {year} zafaye media</span>
+          <span>turning complexity to clarity</span>
+          <Link href="/privacy">privacy policy</Link>
         </div>
       </div>
     </footer>

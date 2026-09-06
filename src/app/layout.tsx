@@ -9,19 +9,21 @@ import { SITE } from "@/lib/constants";
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+  // 300 is the new brand-black headline weight (REBUILD-PLAN.md); the
+  // heavier weights stay loaded for pages not yet migrated off .headline.
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["300", "400", "500"],
 });
 
 export const metadata: Metadata = {
   title: `${SITE.name} — ${SITE.tagline}`,
   description:
-    "Zafaye Media is a performance marketing agency running Meta ad campaigns, social media growth, and creative production for businesses in Pakistan and the US.",
+    "Zafaye Media is a digital marketing agency running paid social, organic content, clipping campaigns, websites and Shopify builds, and branding for businesses in Pakistan and the US.",
   icons: {
     icon: "/logo-primary-transparent.png",
     shortcut: "/logo-primary-transparent.png",
