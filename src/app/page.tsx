@@ -267,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* 04 ways to start — light section, trial tier inverted for emphasis */}
-      <section className="zm-sec zm-light zm-light-start">
+      <section className="zm-sec">
         <div className="zm-wrap">
           <div className="zm-sec-label">
             <span className="zm-mark-num">04</span>
@@ -351,7 +351,7 @@ export default function Home() {
       </section>
 
       {/* 05 client voices — light section, review cards stay dark islands */}
-      <section className="zm-sec zm-light zm-light-end">
+      <section className="zm-sec">
         <div className="zm-wrap">
           <div className="zm-sec-label">
             <span className="zm-mark-num">05</span>

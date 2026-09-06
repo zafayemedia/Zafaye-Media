@@ -50,16 +50,6 @@ body {
   --zm-dim: #5c5c63;
   --zm-orange: #fa7317;
   --zm-maxw: 1240px;
-
-  /* Light-section ground (homepage "ways to start" / "client voices").
-     Black stays the default ground everywhere else. */
-  --zm-mist: #e2e7f0;
-  --zm-mist-line: rgba(5, 11, 31, 0.12);
-  --zm-mist-text: #050b1f;
-  --zm-mist-muted: #41506e;
-  /* The "dark island" card colour used for emphasis on a mist ground
-     (trial tier, review cards) — distinct from --zm-raise/--zm-black. */
-  --zm-ink-navy: #050b1f;
 }
 
 .zm-page {
@@ -281,9 +271,6 @@ a.zm-focus,
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 600ms ease-out;
-}
-.zm-sec.zm-light::before {
-  background: var(--zm-mist-line);
 }
 .zm-sec.zm-inview::before,
 .zm-cta.zm-inview::before {
@@ -1591,141 +1578,6 @@ a.zm-cap:hover .zm-go {
 /* ==========================================================================
    Light sections + motion system (Sept 2026)
    ========================================================================== */
-
-/* ---- light-ground section (homepage "ways to start" / "client voices") --- */
-
-.zm-sec.zm-light {
-  background: var(--zm-mist);
-  color: var(--zm-mist-text);
-}
-/* Top-of-region and bottom-of-region fades: a light section that is
-   immediately followed by another light section shares one continuous
-   mist ground with no seam between them — only the true outer edges (where
-   mist actually meets black) fade. */
-.zm-sec.zm-light-start {
-  background: linear-gradient(to bottom, var(--zm-black) 0, var(--zm-mist) 120px, var(--zm-mist) 100%);
-}
-.zm-sec.zm-light-end {
-  background: linear-gradient(to bottom, var(--zm-mist) 0, var(--zm-mist) calc(100% - 120px), var(--zm-black) 100%);
-}
-.zm-sec.zm-light-start.zm-light-end {
-  background: linear-gradient(
-    to bottom,
-    var(--zm-black) 0,
-    var(--zm-mist) 120px,
-    var(--zm-mist) calc(100% - 120px),
-    var(--zm-black) 100%
-  );
-}
-.zm-sec.zm-light .zm-sec-label h2,
-.zm-sec.zm-light .zm-body,
-.zm-sec.zm-light .zm-disp {
-  color: var(--zm-mist-text);
-}
-.zm-sec.zm-light .zm-body {
-  color: var(--zm-mist-muted);
-}
-.zm-sec.zm-light .zm-mark-num {
-  color: var(--zm-orange);
-}
-
-/* "ways to start": white cards on mist, trial tier inverted to a dark,
-   slightly larger card as the emphasis device. */
-.zm-sec.zm-light .zm-tiers {
-  background: var(--zm-mist-line);
-}
-.zm-sec.zm-light .zm-tier {
-  background: #ffffff;
-}
-.zm-sec.zm-light .zm-tier .zm-name,
-.zm-sec.zm-light .zm-tier .zm-amt,
-.zm-sec.zm-light .zm-tier .zm-start {
-  color: var(--zm-mist-text);
-}
-.zm-sec.zm-light .zm-tier .zm-note,
-.zm-sec.zm-light .zm-tier li {
-  color: var(--zm-mist-muted);
-}
-.zm-sec.zm-light .zm-tier li::before {
-  background: var(--zm-mist-muted);
-}
-.zm-sec.zm-light .zm-tier .zm-n {
-  color: var(--zm-mist-muted);
-}
-.zm-sec.zm-light .zm-tier.zm-feature {
-  background: var(--zm-ink-navy);
-  position: relative;
-}
-.zm-sec.zm-light .zm-tier.zm-feature .zm-n,
-.zm-sec.zm-light .zm-tier.zm-feature .zm-name,
-.zm-sec.zm-light .zm-tier.zm-feature .zm-amt {
-  color: var(--zm-text);
-}
-.zm-sec.zm-light .zm-tier.zm-feature .zm-amt small {
-  color: var(--zm-dim);
-}
-.zm-sec.zm-light .zm-tier.zm-feature .zm-note,
-.zm-sec.zm-light .zm-tier.zm-feature li {
-  color: var(--zm-muted);
-}
-.zm-sec.zm-light .zm-tier.zm-feature li::before {
-  background: var(--zm-dim);
-}
-.zm-sec.zm-light .zm-tier.zm-feature .zm-flag {
-  color: var(--zm-orange);
-}
-/* Trial's CTA is a solid pill, not the text-link the other two tiers use. */
-.zm-sec.zm-light .zm-tier.zm-feature .zm-start {
-  margin-top: 30px;
-  padding: 14px 28px;
-  border-top: 0;
-  border-radius: 999px;
-  background: var(--zm-orange);
-  color: #0b0500;
-  justify-content: center;
-  gap: 10px;
-  font-weight: 400;
-}
-.zm-sec.zm-light .zm-tier.zm-feature .zm-start:hover {
-  color: #0b0500;
-  transform: translateY(-2px);
-  transition: transform 0.2s;
-}
-@media (min-width: 1001px) {
-  .zm-sec.zm-light .zm-tier.zm-feature {
-    /* Combines with the card-stagger entrance below rather than fighting
-       it: translated down pre-reveal, settling to just the emphasis scale
-       once the section is in view. */
-    transform: scale(1.08) translateY(12px);
-    z-index: 2;
-  }
-  .zm-sec.zm-light.zm-inview .zm-tier.zm-feature {
-    transform: scale(1.08);
-  }
-}
-
-/* "client voices": review cards stay dark islands on the mist ground —
-   the inverse of the tiers above, so the two light sections read
-   differently rather than as one long block. */
-.zm-sec.zm-light .zm-voices {
-  background: var(--zm-mist-line);
-}
-.zm-sec.zm-light .zm-voice {
-  background: var(--zm-ink-navy);
-}
-.zm-sec.zm-light .zm-voice blockquote {
-  color: var(--zm-text);
-}
-.zm-sec.zm-light .zm-voice .zm-who b {
-  color: var(--zm-text);
-}
-.zm-sec.zm-light .zm-voice .zm-who small {
-  color: var(--zm-muted);
-}
-.zm-sec.zm-light .zm-trust .zm-lbl,
-.zm-sec.zm-light .zm-trust .zm-names span {
-  color: var(--zm-mist-muted);
-}
 
 /* ---- motion: reveal-on-scroll (driven by SectionObserver's `zm-inview`) --- */
 
