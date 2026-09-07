@@ -1396,6 +1396,8 @@ a.zm-cap:hover .zm-go {
 .zm-metric:last-child {
   padding-bottom: 0;
 }
+/* Every result in the featured block is a verified figure, so all of them
+   get the same weight: 2.6rem, orange, no "primary vs secondary" split. */
 .zm-metric b {
   font-family: var(--font-archivo), sans-serif;
   font-weight: 300;
