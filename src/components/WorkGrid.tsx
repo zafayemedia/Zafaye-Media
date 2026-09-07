@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import HighlightStat from "@/components/HighlightStat";
 import CountUpResult from "@/components/motion/CountUpResult";
 import { CASE_STUDIES, type CaseStudy } from "@/lib/portfolio-data";
 import { CATEGORY, CATEGORY_LABEL, NO_RESULT_CLIENTS, categoryLabel } from "@/lib/work-category";
@@ -20,7 +19,7 @@ function CaseCard({ item, hidden }: { item: CaseStudy; hidden: boolean }) {
     <article className="zm-card" hidden={hidden}>
       <span className="zm-cat">{categoryLabel(item.client)}</span>
       <p className="zm-who">{item.client}</p>
-      <p>{showResult ? <HighlightStat text={item.summary} stat={item.stat} /> : item.summary}</p>
+      <p>{item.summary}</p>
       {showResult && (
         <div className={`zm-res${isRoas ? " zm-lead" : ""}`}>
           <b>

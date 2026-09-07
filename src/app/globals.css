@@ -514,7 +514,13 @@ a.zm-cap:hover .zm-go {
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
-.zm-w-res span {
+/* Direct child only — CountUpResult wraps an animating value in its own
+   <span> nested inside the <b>, and a plain descendant selector here was
+   also matching that inner span, silently shrinking and greying out any
+   stat that animates (e.g. "8.4x") while leaving static ones ("PKR
+   80-100", no wrapper span) untouched. That was the actual bug behind the
+   "why is this one smaller" reports. */
+.zm-w-res > span {
   color: var(--zm-dim);
   font-size: 0.8rem;
   text-transform: lowercase;
@@ -1408,7 +1414,8 @@ a.zm-cap:hover .zm-go {
   font-variant-numeric: tabular-nums;
   color: var(--zm-orange);
 }
-.zm-metric span {
+/* Direct child only — see the note on .zm-w-res > span above. */
+.zm-metric > span {
   color: var(--zm-dim);
   font-size: 0.82rem;
   display: block;
@@ -1473,7 +1480,8 @@ a.zm-cap:hover .zm-go {
 .zm-card .zm-res.zm-lead b {
   font-size: 2.6rem;
 }
-.zm-card .zm-res span {
+/* Direct child only — see the note on .zm-w-res > span above. */
+.zm-card .zm-res > span {
   color: var(--zm-dim);
   font-size: 0.78rem;
   text-transform: lowercase;

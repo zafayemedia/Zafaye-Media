@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import WorkGrid from "@/components/WorkGrid";
-import HighlightStat from "@/components/HighlightStat";
 import Lines from "@/components/motion/Lines";
 import CountUpResult from "@/components/motion/CountUpResult";
 import { CASE_STUDIES } from "@/lib/portfolio-data";
@@ -45,9 +44,7 @@ export default function WorkPage() {
             <div>
               <span className="zm-cat">{categoryLabel(featured.client)}</span>
               <p className="zm-who">{featured.client}</p>
-              <p>
-                <HighlightStat text={featured.summary} stat={featured.stat} />
-              </p>
+              <p>{featured.summary}</p>
               <Link href="/contact" className="zm-btn zm-btn-line" style={{ marginTop: "34px" }}>
                 request the full breakdown <span>&#8594;</span>
               </Link>
