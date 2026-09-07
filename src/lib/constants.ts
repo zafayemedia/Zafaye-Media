@@ -29,7 +29,7 @@ export const NAV_LINKS = [
 export const CLIPPER_LINK = { href: "/clippers", label: "work as a clipper" } as const;
 
 export const PORTFOLIO_DRIVE_LINK =
-  "https://drive.google.com/drive/folders/1g2WE2J9VWGClVj6OUCNfXuw8iM-bBFEQ?usp=sharing";
+  "https://drive.google.com/drive/folders/1g2WE2J9VWGClVj6OUCNfXuw8iM-bBFEQ";
 
 export const SOCIAL_LINKS = [
   { href: "https://www.instagram.com/zafaye.media/", label: "Instagram" },

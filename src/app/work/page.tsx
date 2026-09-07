@@ -5,6 +5,7 @@ import Lines from "@/components/motion/Lines";
 import CountUpResult from "@/components/motion/CountUpResult";
 import { CASE_STUDIES } from "@/lib/portfolio-data";
 import { categoryLabel } from "@/lib/work-category";
+import { PORTFOLIO_DRIVE_LINK } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Case Studies — Zafaye Media",
@@ -31,6 +32,15 @@ export default function WorkPage() {
             Every account below is one the client owns and can log into today. Nothing here is a
             number we cannot open inside the platform and show you.
           </p>
+          <a
+            href={PORTFOLIO_DRIVE_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="zm-btn zm-btn-line"
+            style={{ marginTop: "34px" }}
+          >
+            view full portfolio <span>&#8594;</span>
+          </a>
         </div>
       </section>
 
