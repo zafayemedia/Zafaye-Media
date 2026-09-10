@@ -1097,6 +1097,13 @@ a.zm-cap:hover .zm-go {
   margin-top: 18px;
   max-width: 32ch;
 }
+.zm-f-legal {
+  margin-top: 20px;
+  font-style: normal;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--zm-dim);
+}
 .zm-f-bottom {
   margin-top: 64px;
   padding-top: 26px;

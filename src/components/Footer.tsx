@@ -12,9 +12,12 @@ export default function Footer() {
             <span className="zm-brand">
               zafaye media<i>.</i>
             </span>
-            <p className="zm-body">
-              {SITE.legalName}, {SITE.legalAddress}. Working with brands across Pakistan and the US.
-            </p>
+            <p className="zm-body">Working with brands across Pakistan and the US.</p>
+            <address className="zm-f-legal">
+              {SITE.legalName}
+              <br />
+              {SITE.legalAddress}
+            </address>
           </div>
 
           <div>
