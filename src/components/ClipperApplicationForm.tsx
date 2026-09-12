@@ -425,10 +425,10 @@ export default function ClipperApplicationForm() {
         required
         note="(with country code)"
         errors={errors}
-        placeholder="+92 300 1234567"
+        placeholder="+1 (123) 456-7890"
       />
-      <SelectField name="country" label="country" options={COUNTRIES} required defaultValue="Pakistan" errors={errors} />
-      <TextField name="city" label="city" required errors={errors} placeholder="e.g. Lahore" />
+      <SelectField name="country" label="country" options={COUNTRIES} required errors={errors} />
+      <TextField name="city" label="city" required errors={errors} placeholder="e.g. your city" />
       <CheckboxField name="age_confirmed" label="I am 18 years or older" errors={errors} />
 
       <p className="zm-mark-num" style={{ margin: "40px 0 -10px" }}>
@@ -447,7 +447,7 @@ export default function ClipperApplicationForm() {
       <SelectField name="main_platform" label="main platform" options={MAIN_PLATFORMS} required errors={errors} />
       <SelectField name="follower_range" label="followers on main page" options={FOLLOWER_RANGES} required errors={errors} />
       <SelectField name="avg_views_range" label="average views (last 10 posts)" options={VIEWS_RANGES} required errors={errors} />
-      <TextField name="top_audience_country" label="top audience country" required errors={errors} placeholder="e.g. Pakistan" />
+      <TextField name="top_audience_country" label="top audience country" required errors={errors} placeholder="e.g. United States" />
       <SelectField
         name="audience_percent_tier1"
         label="% audience from us, uk, canada, australia"

@@ -111,7 +111,7 @@ export default function ClippingEnquiryForm() {
         <label htmlFor="c-phone">
           whatsapp number <em>*</em>
         </label>
-        <input id="c-phone" name="phone" required placeholder="+92 300 0000000" />
+        <input id="c-phone" name="phone" required placeholder="+1 (123) 456-7890" />
       </div>
       <div className="zm-field">
         <label htmlFor="c-country">country</label>

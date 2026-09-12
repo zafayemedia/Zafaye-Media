@@ -129,7 +129,7 @@ export default function InquiryForm({ defaultPackage = "" }: { defaultPackage?: 
         <label htmlFor="f-phone">
           phone / whatsapp <em>*</em>
         </label>
-        <input id="f-phone" name="phone" required placeholder="+92 300 0000000" />
+        <input id="f-phone" name="phone" required placeholder="+1 (123) 456-7890" />
       </div>
       <div className="zm-field">
         <label htmlFor="f-city">

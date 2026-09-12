@@ -51,8 +51,8 @@ export default function ClippersPage() {
               <span>you are paid on views delivered, not per post</span>
             </div>
             <div>
-              <b>in pkr</b>
-              <span>paid locally, no currency conversion on your side</span>
+              <b>paid worldwide</b>
+              <span>bank transfer in the us, crypto in most other countries — confirmed at onboarding</span>
             </div>
             <div>
               <b>in writing</b>
@@ -103,7 +103,10 @@ export default function ClippersPage() {
             <div className="zm-step">
               <span className="zm-n">04</span>
               <h3>get paid</h3>
-              <p>After a campaign ends, on approved clips only. Views are counted per post, and you are paid in PKR.</p>
+              <p>
+                After a campaign ends, on approved clips only. Views are counted per post, and your
+                payment method is confirmed during onboarding.
+              </p>
             </div>
           </div>
         </div>
@@ -126,6 +129,7 @@ export default function ClippersPage() {
                 <li>you can edit your own short form clips</li>
                 <li>you can post consistently</li>
               </ul>
+              <p className="zm-note">We work with page owners worldwide.</p>
             </div>
             <div className="zm-panel">
               <span className="zm-n">not a fit</span>
